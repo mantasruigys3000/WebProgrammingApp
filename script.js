@@ -2,47 +2,76 @@ function initialiseCode(){
 
     
     // Get the modal
-    var modal = document.getElementById("edit-modal");
+    var modal = document.getElementsByClassName("modal-custom");
+    console.log(modal[0])
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-    var spanAlt = document.querySelectorAll('#edit-modal .card-footer #close')[0];
+    var spanAlt = document.querySelectorAll('.modal-custom .card-footer #close')[0];
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-        modal.style.display = "none";
+        console.log("Span clicked");
+        modal[0].style.display = "none";
+        modal[1].style.display = "none";
     }
 
     spanAlt.onclick = function() {
-        modal.style.display = "none";
+        console.log("Alt Span clicked");
+        modal[0].style.display = "none";
+        modal[1].style.display = "none";
     }
-
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
     if (event.target == modal) {
-        modal.style.display = "none";
+        console.log("Outside Span clicked");
+        modal[0].style.display = "none";
+        modal[1].style.display = "none";
     }
     }
     
+    // Query selects all grid blocks within the company row list and for each item adds an event listener
     document.querySelectorAll('#company-block-row .col-mb-3').forEach(item => {
-        item.addEventListener('mouseover', function(event){
-            var editButton = document.getElementById((this.id).concat("-btn"));
-            editButton.style.display = "inline-block";
-        })
-        item.addEventListener('click', function(event){
-            // get the modal by ID
-            console.log("Edit Company");
-            console.log(this.id)
-            var btn = document.getElementById((this.id));
-            btn.onclick = function() {
-                modal.style.display = "block";
 
+        // Event listener when mouse enters the card
+        item.addEventListener('mouseover', function(event){
+            // Specific edit button selected and displayed
+            var editButton = document.getElementById((this.id).concat("-btn"));
+            if (editButton){
+                editButton.style.display = "inline-block";
             }
         })
+
+        // Event listener when mouse clicks the card
+        item.addEventListener('click', function(event){
+            // get the modal by ID
+            current_id = this.id;
+            console.log(current_id);
+
+            // depending on the type of the card, corresponding modal is opened when clicked
+            // ID types:
+            // card-comp{0} - a card containing company information, {0} represents its unique id
+            // card-add-comp - a predefined card for adding new companies
+
+            console.log(current_id.includes("comp"));
+
+            if (current_id.includes("card-comp")){
+                var btn = document.getElementById((current_id));
+                btn.onclick = function() {
+                    modal[0].style.display = "block";
+                }
+            }else{
+                modal[1].style.display = "block";
+            }
+        })
+
+        // Event listener when mouse leaves the card
         item.addEventListener('mouseout', function(event){
             var editButton = document.getElementById((this.id).concat("-btn"));
-            editButton.style.display = "none";
+            if (editButton){
+                editButton.style.display = "none";
+            }
         })
       })
     };
