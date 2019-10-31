@@ -67,6 +67,46 @@ public $connection;
 
     }
 
+    public function getCompanies(){
+        $sql = "SELECT * FROM tbl_company";
+        $result =  mysqli_query($this->connection,$sql);
+
+        $companies = [];
+
+
+        while($row = mysqli_fetch_row($result)){
+
+            $id = strval( $row[0]);
+            $name = strval($row[1]);
+            $tel = strval($row[2]);
+            $date_added = strval($row[3]);
+            $date_updated = strval($row[4]);
+            $description = strval($row[5]);
+            $email = strval($row[6]);
+
+
+
+            
+        
+
+            $comapanyArr = array(
+                "id" => $id,
+                "name" => $name,
+                "tel" => $tel,
+                "date_added" => $date_added,
+                "date_updated" => $date_updated,
+                "description" => $description,
+                "email" => $email
+            );
+
+            array_push($companies,$comapanyArr);
+
+        }
+
+        return $companies;
+
+    }
+
 
 
 

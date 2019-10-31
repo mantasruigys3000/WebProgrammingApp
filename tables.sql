@@ -17,3 +17,10 @@ CREATE TABLE tbl_user(
 
 INSERT into table tbl_user VALUES ('a01','E1F53135E5','xBIBM57uij');
 INSERT into tbl_user(user_username,user_salt,user_password) VALUES ('a01','E1F53135E5','7ffe3d53581e6f0b6412a0c52f739896e37145e82ecb6da12bbb84bed60fbccd');
+
+INSERT into tbl_company (company_name,company_tel,company_date_added,company_last_update,company_description,company_email)
+VALUES('Intel','+44 7700 900702','2019-10-31 14:23:00','2019-10-31 14:23:00','Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California, in the Silicon Valley.','help@intel.co.uk');
+
+INSERT into tbl_company (company_name,company_tel,company_date_added,company_last_update,company_description,company_email)
+VALUES('IBM','+44 7700 900825','2019-10-31 14:28:00','2019-10-31 14:28:00','The International Business Machines Corporation is an American multinational information technology company headquartered in Armonk, New York, with operations in over 170 countries.','help@ibm.co.uk
+');
