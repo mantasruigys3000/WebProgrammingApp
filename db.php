@@ -83,6 +83,8 @@ public $connection;
             $date_updated = strval($row[4]);
             $description = strval($row[5]);
             $email = strval($row[6]);
+            $address = strval($row[7]);
+
 
 
 
@@ -96,7 +98,8 @@ public $connection;
                 "date_added" => $date_added,
                 "date_updated" => $date_updated,
                 "description" => $description,
-                "email" => $email
+                "email" => $email,
+                "address" => $address
             );
 
             array_push($companies,$comapanyArr);
