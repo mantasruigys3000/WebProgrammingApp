@@ -84,7 +84,7 @@ echo($_COMPANY_LIST);
             </div>
                 <div class="card-footer bg-primary border-primary">
                     <button type="button bg-primary" class="btn btn-primary" id="more-info">More Info</button>
-                    <div id="comp01-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="/assets/edit_logo.png"></div>
+                    <div id="comp01-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="assets/edit_logo.png"></div>
                 </div>
         </div>
 
@@ -95,7 +95,7 @@ echo($_COMPANY_LIST);
             </div>
                 <div class="card-footer bg-primary border-primary">
                     <button type="button bg-primary" class="btn btn-primary" id="more-info">More Info</button>
-                    <div id="comp02-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="/assets/edit_logo.png"></div>
+                    <div id="comp02-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="assets/edit_logo.png"></div>
                 </div>
         </div>
         <div id="comp03" class="card border-primary col-mb-3" style="max-width: 18rem;">
@@ -105,7 +105,7 @@ echo($_COMPANY_LIST);
             </div>
                 <div class="card-footer bg-primary border-primary">
                     <button type="button bg-primary" class="btn btn-primary" id="more-info">More Info</button>
-                    <div id="comp03-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="/assets/edit_logo.png"></div>
+                    <div id="comp03-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="assets/edit_logo.png"></div>
                 </div>
         </div>
         <div id="comp04" class="card border-primary col-mb-3" style="max-width: 18rem;">
@@ -115,7 +115,7 @@ echo($_COMPANY_LIST);
             </div>
                 <div class="card-footer bg-primary border-primary">
                     <button type="button bg-primary" class="btn btn-primary" id="more-info">More Info</button>
-                    <div id="comp04-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="/assets/edit_logo.png"></div>
+                    <div id="comp04-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="assets/edit_logo.png"></div>
                 </div>
         </div>
 
