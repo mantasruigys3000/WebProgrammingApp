@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+require './db.php';
+$db = new db();
+
 if ( !isset( $_SESSION['username'] ) ) {
     // Redirect them to the login page
     header("Location: index.php"); 
@@ -57,8 +60,6 @@ echo($_COMPANY_LIST);
 <!-- The Modal -->
 <div id="edit-modal" class="modal-custom">
   <!-- Modal content -->
-    
-    
     <div class="card" style="width: 75%; height: 75%; margin: 7% auto;">
         <div class="card-header">
             Company Information
@@ -73,54 +74,67 @@ echo($_COMPANY_LIST);
             <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
         </div>
     </div>
+</div>
 
+<div id="add-modal" class="modal-custom">
+  <!-- Modal content -->
+    <div class="card" style="width: 75%; height: 75%; margin: 7% auto;">
+        <div class="card-header">
+            Add new company
+            <span class="close">&times;</span>
+        </div>
+        <div class="card-body" style="margin: 10px;">
+            <form method="POST" action="">
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" placeholder="Company Name">
+                </div>
+                <label for="contact">Contact Details</label>
+                <div id="contact" class="form-group">
+                    <input id="inputAddress" class="form-control" type="text" placeholder="Company Address">
+                </div>
+                <div class="form-group">
+                    <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone">
+                </div>
+                <div class="form-group">
+                    <input id="inputEmail" class="form-control" type="email" placeholder="Company Email">
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription">Description</label>
+                    <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="200"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
 
     <div id="company-block-row" class="row">
-        <div id="comp01" class="card border-primary col-mb-3" style="max-width: 18rem;">
-            <div class="card-body text-primary">
-                <h5 class="card-title">Intel</h5>
-                <p class="card-text">Intel Corporation is an American multinational corporation and technology company based in Silicon Valley. </p>
-            </div>
-                <div class="card-footer bg-primary border-primary">
-                    <button type="button bg-primary" class="btn btn-primary" id="more-info">More Info</button>
-                    <div id="comp01-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="assets/edit_logo.png"></div>
-                </div>
-        </div>
 
-        <div id="comp02" class="card border-primary col-mb-3" style="max-width: 18rem;">
-            <div class="card-body text-primary">
-                <h5 class="card-title">IBM</h5>
-                <p class="card-text">The International Business Machines Corporation is an American multinational information technology company.</p>
+        <div id="add-comp" class="card border-primary col-mb-3" style="width: 18rem; height: 15rem;">
+            <div class="card-body text-primary" style="height: 100%;">
+                <h5 class="card-title">Add new company</h5>
+                <img style="margin: auto;" width="50px" src="assets/add_icon.png">
             </div>
-                <div class="card-footer bg-primary border-primary">
-                    <button type="button bg-primary" class="btn btn-primary" id="more-info">More Info</button>
-                    <div id="comp02-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="assets/edit_logo.png"></div>
-                </div>
         </div>
-        <div id="comp03" class="card border-primary col-mb-3" style="max-width: 18rem;">
-            <div class="card-body text-primary">
-                <h5 class="card-title">Apple</h5>
-                <p class="card-text">Apple Inc. is an American multinational technology company headquartered in Cupertino that sells consumer electronics</p>
+        <?php
+        $company_list = $db->getCompanies();
+        
+        foreach ($company_list as $company){
+            $element = sprintf("<div id='card-comp%s' class='card border-primary col-mb-3' style='max-width: 18rem;'>
+            <div class='card-body text-primary'>
+                <h5 class='card-title'>%s</h5>
+                <p class='card-text'>%s</p>
             </div>
-                <div class="card-footer bg-primary border-primary">
-                    <button type="button bg-primary" class="btn btn-primary" id="more-info">More Info</button>
-                    <div id="comp03-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="assets/edit_logo.png"></div>
-                </div>
-        </div>
-        <div id="comp04" class="card border-primary col-mb-3" style="max-width: 18rem;">
-            <div class="card-body text-primary">
-                <h5 class="card-title">Microsoft</h5>
-                <p class="card-text">Microsoft Corporation is an American multinational technology company with headquarters in Redmond, Washington.</p>
+            <div class='card-footer bg-primary border-primary'>
+                <button type='button bg-primary' class='btn btn-primary' id='more-info'>More Info</button>
+                <div id='comp%s-btn' class='edit-button float-right mt-2' ><strong>Edit</strong> <img width='25px' src='assets/edit_logo.png'></div>
             </div>
-                <div class="card-footer bg-primary border-primary">
-                    <button type="button bg-primary" class="btn btn-primary" id="more-info">More Info</button>
-                    <div id="comp04-btn" class="edit-button float-right mt-2" ><strong>Edit</strong> <img width="25px" src="assets/edit_logo.png"></div>
-                </div>
-        </div>
-
-
-
+            </div>",$company['id'], $company['name'], $company['description'], $company['id']);
+            echo($element);
+        }
+        ?>
+        
+        
 <!--
     <div id="comp01" class="col-lg-2">
       <h3>Company Name</h3>
