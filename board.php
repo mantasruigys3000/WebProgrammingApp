@@ -84,23 +84,23 @@ echo($_COMPANY_LIST);
             <span class="close">&times;</span>
         </div>
         <div class="card-body" style="margin: 10px;">
-            <form method="POST" action="">
+            <form method="POST" action="php_events/event_insertCompany.php">
                 <div class="form-group">
-                    <input class="form-control form-control-lg" type="text" placeholder="Company Name">
+                    <input class="form-control form-control-lg" type="text" placeholder="Company Name" name="name">
                 </div>
                 <label for="contact">Contact Details</label>
                 <div id="contact" class="form-group">
-                    <input id="inputAddress" class="form-control" type="text" placeholder="Company Address">
+                    <input id="inputAddress" class="form-control" type="text" placeholder="Company Address" name="address">
                 </div>
                 <div class="form-group">
-                    <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone">
+                    <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone" name="tel">
                 </div>
                 <div class="form-group">
-                    <input id="inputEmail" class="form-control" type="email" placeholder="Company Email">
+                    <input id="inputEmail" class="form-control" type="email" placeholder="Company Email" name="email">
                 </div>
                 <div class="form-group">
                     <label for="inputDescription">Description</label>
-                    <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="200"></textarea>
+                    <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="200" name="description"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

@@ -2,9 +2,35 @@
     require '../db.php';
     $db = new db();
 
-    $sql = "INSERT into tbl_company (company_name,company_tel,company_date_added,company_last_update,company_description,company_email)
-    VALUES($_POST[""],'+44 7700 900825','2019-10-31 14:28:00','2019-10-31 14:28:00','The International Business Machines Corporation is an American multinational information technology company headquartered in Armonk, New York, with operations in over 170 countries.','help@ibm.co.uk
-    ')";
+    $name = $_POST['name'];
+    $tel = $_POST['tel'];
+    $description = $_POST['description'];
+    $email = $_POST['email'];
+    $address = $_POST["address"];
+
+    $date = date('Y-m-d h:m:s', time());
+    $date = "\"" . $date .  "\"";
+    $name = "\"" . $name .  "\"";
+    $description= "\"" . $description .  "\"";
+    $email = "\"" . $email .  "\"";
+    $address = "\"" . $address .  "\"";
+
+
+    var_dump($date);
+
+
+    
+    $sql = "INSERT into tbl_company (company_name,company_tel,company_date_added,company_last_update,company_description,company_email,company_address)
+    VALUES($name,$tel,$date,$date,$description,$email,$address)";
+
+    echo $sql;
+
+
+    mysqli_query($db->connection,$sql);
+    echo mysqli_error($db->connection);
+
+
+
 
 
 ?>
