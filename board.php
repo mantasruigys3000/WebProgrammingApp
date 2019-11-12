@@ -35,19 +35,16 @@ echo($_COMPANY_LIST);
 
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script type="text/javascript" src="script.js"></script> 
-
+    <script type="text/javascript" src="test.js"></script> 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
 
 <div class="header">
-    <div class="jumbotron text-center" id="headish">
+    <div class="jumbotron text-center bg-primary" id="headish">
         <h1 id="header-font">Dashboard</h1>
         <div class="search-body">
         <input class="search-bar" type="text" id="search-input" placeholder ="eg: 'intel' " onkeyup="searchFunction()">
@@ -108,31 +105,43 @@ echo($_COMPANY_LIST);
     </div>
 </div>
 
-    <div id="company-block-row" class="row">
 
-        <div id="add-comp" class="card border-primary col-mb-3" style="width: 18rem; height: 15rem;">
-            <div class="card-body text-primary" style="height: 100%;">
-                <h5 class="card-title">Add new company</h5>
-                <img style="margin: auto;" width="50px" src="assets/add_icon.png">
+<div class= "container-fluid mt-4" >
+    <div class= "row justify-content-center" id="company-block-row">
+
+        <div class= 'col-auto mb-3'>
+            <div class= 'card border-primary' style='width: 18rem; min-height:15rem;' id='add-comp'>
+                <div class= 'card-body'>
+                    <h5 class='card-title text-primary text-center'> Add New Company</h5>
+                    <img style='margin: auto;'  width='75px' src='assets/add_icon.png'>
+                </div>
             </div>
         </div>
+
         <?php
-        $company_list = $db->getCompanies();
-        
-        foreach ($company_list as $company){
-            $element = sprintf("<div id='card-comp%s' class='card border-primary col-mb-3' style='max-width: 18rem;'>
-            <div class='card-body text-primary'>
-                <h5 class='card-title'>%s</h5>
-                <p class='card-text'>%s</p>
-            </div>
-            <div class='card-footer bg-primary border-primary'>
-                <button type='button bg-primary' class='btn btn-primary' id='more-info'>More Info</button>
-                <div id='comp%s-btn' class='edit-button float-right mt-2' ><strong>Edit</strong> <img width='25px' src='assets/edit_logo.png'></div>
-            </div>
-            </div>",$company['id'], $company['name'], $company['description'], $company['id']);
-            echo($element);
-        }
+            $company_list = $db->getCompanies();
+
+            foreach ($company_list as $company)
+            {
+                $element = sprintf("
+                <div class='col-auto mb-3'>
+                    <div class='card border-primary' style='width: 18rem; min-height:13rem;' id='card-comp%s'>
+                        <div class='card-body'>
+                            <h5 id= 'card-title' class='card-title text-primary text-center'>%s</h5>
+                            <h6 class='card-subtitle mb-2 text-muted text-center'>Software Engineering</h6>
+                            <p class='card-text text-center' style='height:4.5rem; overflow: hidden;' id='description'>%s</p>
+                        </div>
+                        <div class= 'card-bottom w-100 p-3 bg-primary' id='bottom'>
+                                <button type='button bg-primary' class= 'btn btn-primary border-white' id='more-info'>More Info</button>
+                        </div>
+                    </div>
+                    </div>"
+            ,$company['id'], $company['name'], $company['description'], $company['id']);
+                echo($element);
+            }
         ?>
+    </div>
+</div>
         
         
 <!--
@@ -166,8 +175,11 @@ echo($_COMPANY_LIST);
 
 </div>
 
-<div class="footer">
-</div>
+<footer class="footer bg-primary ">
+    <div class="container ">
+        yeah
+    </div>
+</footer>
 
 </body>
 </html>

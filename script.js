@@ -100,8 +100,8 @@ function expandLoginBox() {
     filter = input.value.toUpperCase();
 
     // Loop through all list items, and hide those who don't match the search query
-    document.querySelectorAll('#company-block-row .col-mb-3').forEach(item =>{
-        a = (item.getElementsByClassName("card-body text-primary").item(0));
+    document.querySelectorAll('#company-block-row').forEach(item =>{
+        a = (item.getElementsByClassName("card-body").item(0));
         txtValue = a.textContent || a.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             item.style.display = "";
