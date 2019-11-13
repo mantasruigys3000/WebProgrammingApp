@@ -42,9 +42,10 @@ if ( !isset( $_SESSION['username'] ) ) {
         <div class="search-body">
         <input class="search-bar" type="text" id="search-input" placeholder ="eg: 'intel' " onkeyup="searchFunction()">
         <div>
-          <form method="get" action="logout.php">
+          <form method="post" action="logout.php">
           <button type="submit" class="btn btn-primary">Log out</button>
           </form>
+          <?php print $_SESSION['recordAdded']?>
        </div>
         </div>
     </div>
@@ -81,7 +82,7 @@ if ( !isset( $_SESSION['username'] ) ) {
         <div class="card-body" style="margin: 10px;">
             <form method="POST" action="php_events/event_insertCompany.php">
                 <div class="form-group">
-                    <input class="form-control form-control-lg" type="text" placeholder="Company Name" name="name">
+                    <input class="form-control form-control-lg" type="text" placeholder="Company Name" name="name" required>
                 </div>
                 <label for="contact">Contact Details</label>
                 <div id="contact" class="form-group">
@@ -98,7 +99,7 @@ if ( !isset( $_SESSION['username'] ) ) {
                     <label for="inputDescription">Description</label>
                     <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="200" name="description"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name = "submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
         <div class="card-footer bg-primary border-primary">
@@ -106,10 +107,6 @@ if ( !isset( $_SESSION['username'] ) ) {
         </div>
     </div>
 </div>
-<?php
-
-
- ?>
 
 <div class= "container-fluid mt-4" >
     <div class= "row justify-content-center" id="company-block-row">

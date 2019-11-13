@@ -40,7 +40,7 @@ body{
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-  
+
   /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
@@ -50,7 +50,7 @@ body{
     width: 75% !important;
     height: 75%;
   }
-  
+
   /* The Close Button */
   .close {
     color: #aaa;
@@ -58,7 +58,7 @@ body{
     font-size: 28px;
     font-weight: bold;
   }
-  
+
   .close:hover,
   .close:focus {
     color: black;
@@ -142,7 +142,7 @@ to {opacity:1 ;}
     border-radius: 25px 25px 0px 0px;
     height: 50px;
     vertical-align: middle;
-    
+
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -227,4 +227,7 @@ body{
 #more-info
 {
     width: 100px;
+}
+#warn {
+  color: red;
 }
