@@ -7,7 +7,7 @@ $company_list = $db->getCompanies();
 
 if ( !isset( $_SESSION['username'] ) ) {
     // Redirect them to the login page
-    header("Location: index.php"); 
+    header("Location: index.php");
 }
 
 ?>
@@ -19,11 +19,11 @@ if ( !isset( $_SESSION['username'] ) ) {
     <title>Admin Dashboard</title>
 
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="text/javascript" src="script.js"></script> 
+    <script type="text/javascript" src="script.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
@@ -41,6 +41,11 @@ if ( !isset( $_SESSION['username'] ) ) {
         <h1 id="header-font">Dashboard</h1>
         <div class="search-body">
         <input class="search-bar" type="text" id="search-input" placeholder ="eg: 'intel' " onkeyup="searchFunction()">
+        <div>
+          <form method="get" action="logout.php">
+          <button type="submit" class="btn btn-primary">Log out</button>
+          </form>
+       </div>
         </div>
     </div>
 </div>
@@ -83,7 +88,8 @@ if ( !isset( $_SESSION['username'] ) ) {
                     <input id="inputAddress" class="form-control" type="text" placeholder="Company Address" name="address">
                 </div>
                 <div class="form-group">
-                    <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone" name="tel">
+                    <input id="inputTel" class="form-control" type="tex" placeholder="Company Telephone - 11 digits long" name="tel"
+                    pattern="[0-9]{3}[0-9]{4}[0-9]{4}" required>
                 </div>
                 <div class="form-group">
                     <input id="inputEmail" class="form-control" type="email" placeholder="Company Email" name="email">
@@ -100,6 +106,10 @@ if ( !isset( $_SESSION['username'] ) ) {
         </div>
     </div>
 </div>
+<?php
+
+
+ ?>
 
 <div class= "container-fluid mt-4" >
     <div class= "row justify-content-center" id="company-block-row">
