@@ -3,27 +3,12 @@ session_start();
 
 require './db.php';
 $db = new db();
+$company_list = $db->getCompanies();
 
 if ( !isset( $_SESSION['username'] ) ) {
     // Redirect them to the login page
     header("Location: index.php"); 
 }
-
-/*
-$query = "SELECT * FROM company_list";
-$result = mysql_query($query);
-
-$_COMPANY_LIST = array();
-
-$num = mysql_num_rows($results);
-if ($num > 0) {
-    while ($row = mysql_fetch_assoc($result)) {
-        array_push($_COMPANY_LIST, $row);
-    }
-}
-
-echo($_COMPANY_LIST);
-*/
 
 ?>
 
@@ -41,6 +26,11 @@ echo($_COMPANY_LIST);
     
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+    var company_list = <?php echo json_encode($company_list); ?>;
+    console.log(company_list);
+    </script>
 
 </head>
 
@@ -66,9 +56,9 @@ echo($_COMPANY_LIST);
             <span class="close">&times;</span>
         </div>
         <div class="card-body" style="margin: 50px auto">
-            <h5 class="card-title">Intel</h5>
-            <p class="card-text">Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California.</p>
-            <a href="#" class="btn btn-primary">Visit Website</a>
+            <h5 id="modal-company-name" class="card-title">Intel</h5>
+            <p id="modal-company-desc" class="card-text">Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California.</p>
+            <a id="modal-company-email" href="#" class="btn btn-primary">Email Link</a>
         </div>
         <div class="card-footer bg-primary border-primary">
             <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
@@ -105,63 +95,45 @@ echo($_COMPANY_LIST);
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
+        <div class="card-footer bg-primary border-primary">
+            <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
+        </div>
     </div>
 </div>
 
-    <div id="company-block-row" class="row">
-
-        <div id="add-comp" class="card border-primary col-mb-3" style="width: 18rem; height: 15rem;">
-            <div class="card-body text-primary" style="height: 100%;">
-                <h5 class="card-title">Add new company</h5>
-                <img style="margin: auto;" width="50px" src="assets/add_icon.png">
+<div class= "container-fluid mt-4" >
+    <div class= "row justify-content-center" id="company-block-row">
+    <div class= 'col-auto mb-3'>
+            <div class= 'card border-primary' style='width: 18rem; min-height:15rem;' id='add-comp'>
+                <div class= 'card-body'>
+                    <h5 class='card-title text-primary text-center'> Add New Company</h5>
+                    <img style='margin: auto;'  width='75px' src='assets/add_icon.png'>
+                </div>
             </div>
         </div>
         <?php
-        $company_list = $db->getCompanies();
-        
-        foreach ($company_list as $company){
-            $element = sprintf("<div id='card-comp%s' class='card border-primary col-mb-3' style='max-width: 18rem;'>
-            <div class='card-body text-primary'>
-                <h5 class='card-title'>%s</h5>
-                <p class='card-text'>%s</p>
-            </div>
-            <div class='card-footer bg-primary border-primary'>
-                <button type='button bg-primary' class='btn btn-primary' id='more-info'>More Info</button>
-                <div id='comp%s-btn' class='edit-button float-right mt-2' ><strong>Edit</strong> <img width='25px' src='assets/edit_logo.png'></div>
-            </div>
-            </div>",$company['id'], $company['name'], $company['description'], $company['id']);
-            echo($element);
-        }
+            $company_list = $db->getCompanies();
+
+            foreach ($company_list as $company)
+            {
+                $element = sprintf("
+                <div class='col-auto mb-3'>
+                    <div class='card border-primary' style='width: 18rem; min-height:13rem;' id='card-comp%s'>
+                        <div class='card-body'>
+                            <h5 id= 'card-title' class='card-title text-primary text-center'>%s</h5>
+                            <h6 class='card-subtitle mb-2 text-muted text-center'>Software Engineering</h6>
+                            <p class='card-text text-center' style='height:4.5rem; overflow: hidden;' id='description'>%s</p>
+                        </div>
+                        <div class= 'card-bottom w-100 p-3 bg-primary' id='bottom'>
+                                <button type='button bg-primary' class= 'btn btn-primary border-white' id='more-info'>More Info</button>
+                        </div>
+                    </div>
+                    </div>"
+            ,$company['id'], $company['name'], $company['description'], $company['id']);
+                echo($element);
+            }
         ?>
-        
-        
-<!--
-    <div id="comp01" class="col-lg-2">
-      <h3>Company Name</h3>
-      <p>This company has no information.</p>
-      <div id="comp01-btn" class="edit-button" ><strong>Edit</strong> <img width="25px" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Black_pencil.svg"></div>
-    </div>
-    <div id="comp02" class="col-lg-2">
-    <h3>Company Name</h3>
-      <p>This company has no information.</p>
-      <div id="comp02-btn" class="edit-button"><strong>Edit</strong> <img width="25px" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Black_pencil.svg"></div>
-    </div>
-    <div id="comp03" class="col-lg-2">
-      <h3>Company Name</h3>
-      <p>This company has no information.</p>
-      <div id="comp03-btn" class="edit-button"><strong>Edit</strong> <img width="25px" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Black_pencil.svg"></div>
-    </div>
-    <div id="comp04" class="col-lg-2">
-      <h3>Company Name</h3>
-      <p>This company has no information.</p>
-      <div id="comp04-btn" class="edit-button"><strong>Edit</strong> <img width="25px" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Black_pencil.svg"></div>
-    </div>
-    <div id="comp05" class="col-lg-2">
-    <h3>Company Name</h3>
-      <p>This company has no information.</p>
-      <div id="comp05-btn" class="edit-button"><strong>Edit</strong> <img width="25px" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Black_pencil.svg"></div>
-    </div>
--->
+  </div>
   </div>
 
 </div>

@@ -1,38 +1,70 @@
 function initialiseCode(){
 
     
+
     // Get the modal
     var modal = document.getElementsByClassName("modal-custom");
     console.log(modal[0])
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    var spanAlt = document.querySelectorAll('.modal-custom .card-footer #close')[0];
+    var span = document.getElementsByClassName("close");
+    var spanAlt = document.querySelectorAll('.modal-custom .card-footer #close');
+
+    // Get company information from global array and display it in the more info modal.
+    // Arguments:
+    // current_id: the id of the element clicked
+
+    function getCompanyInfo(current_id){
+
+        // Declaring variables that hold the elements
+        modal_company_name_element = document.getElementById("modal-company-name");
+        modal_company_desc_element = document.getElementById("modal-company-desc");
+
+        // Convert string id to number for iterative purposes
+        current_id = current_id.replace("card-comp", '');
+
+        for (company in company_list){
+            if (current_id === company_list[company]['id']){
+                // Declaring variables that hold company information
+                modal_company_name = company_list[company]['name'];
+                modal_company_desc = company_list[company]['description'];
+            }
+        } 
+
+        // Changing the contents of the element within the modal
+        modal_company_name_element.innerHTML = modal_company_name;
+        modal_company_desc_element.innerHTML = modal_company_desc;
+    }
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        console.log("Span clicked");
+
+    span[0].onclick = function() {
         modal[0].style.display = "none";
+    }
+
+    span[1].onclick = function() {
         modal[1].style.display = "none";
     }
 
-    spanAlt.onclick = function() {
-        console.log("Alt Span clicked");
+    spanAlt[0].onclick = function() {
         modal[0].style.display = "none";
+    }
+
+    spanAlt[1].onclick = function() {
         modal[1].style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-    if (event.target == modal) {
-        console.log("Outside Span clicked");
+    if (event.target == modal[0]) {
         modal[0].style.display = "none";
+    }else if (event.target == modal[1]){
         modal[1].style.display = "none";
     }
     }
     
     // Query selects all grid blocks within the company row list and for each item adds an event listener
-    document.querySelectorAll('#company-block-row .col-mb-3').forEach(item => {
+    document.querySelectorAll('#company-block-row .card').forEach(item => {
 
         // Event listener when mouse enters the card
         item.addEventListener('mouseover', function(event){
@@ -54,15 +86,17 @@ function initialiseCode(){
             // card-comp{0} - a card containing company information, {0} represents its unique id
             // card-add-comp - a predefined card for adding new companies
 
-            console.log(current_id.includes("comp"));
+            console.log(current_id.includes("card-comp"));
 
             if (current_id.includes("card-comp")){
                 var btn = document.getElementById((current_id));
                 btn.onclick = function() {
                     modal[0].style.display = "block";
+                    getCompanyInfo(current_id);
                 }
             }else{
                 modal[1].style.display = "block";
+                console.log(modal[1]);
             }
         })
 
@@ -75,23 +109,6 @@ function initialiseCode(){
         })
       })
     };
-
-function expandLoginBox() {
-    var coll = document.getElementsByClassName("loginroll");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.maxHeight){
-            content.style.maxHeight = null;
-            } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
-  };
 
   function searchFunction() {
     // Declare variables
@@ -108,14 +125,6 @@ function expandLoginBox() {
           } else {
             item.style.display = "none";
           }
-        /*
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        }else {
-            li[i].style.display = "none";
-        }
-        */
     })
 }
 
@@ -129,28 +138,3 @@ if( document.readyState !== 'loading' ) {
         initialiseCode();
     });
 };
-
-/* function initialise(){
-    document.querySelectorAll('#company-block-row .col-lg-2').forEach(item => {
-        item.addEventListener('mouseover', event => {
-            console.log(this);
-            var currentElementId = document.getElementById(this.id);
-            var editButton = currentElementId.getElementByClassName("edit-button");
-            editButton.style.display = "block";
-        })
-        item.addEventListener('click', event => {
-            console.log("Edit Menu");
-        })
-        item.addEventListener('mouseout', event => {
-            var currentElementId = document.getElementById(this.id);
-            var editButton = currentElementId.getElementByClassName("edit-button");
-            editButton.style.display = "none";
-        })
-      })
-};
-*/
-
-
-
-
-
