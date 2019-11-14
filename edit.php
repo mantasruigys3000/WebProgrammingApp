@@ -38,10 +38,7 @@ if ( !isset( $_SESSION['username'] ) ) {
 
 <div class="header">
     <div class="jumbotron text-center" id="headish">
-        <h1 id="header-font">Dashboard</h1>
-        <div class="search-body">
-        <input class="search-bar" type="text" id="search-input" placeholder ="eg: 'intel' " onkeyup="searchFunction()">
-        <div>
+        <h1 id="header-font">Company Details</h1>
           <?php print $_SESSION['recordAdded']?>
        </div>
         </div>
@@ -50,28 +47,8 @@ if ( !isset( $_SESSION['username'] ) ) {
 
 <div class="main-body">
 
-<!-- The Modal -->
-<div id="edit-modal" class="modal-custom">
   <!-- Modal content -->
     <div class="card" style="width: 75%; height: 75%; margin: 7% auto;">
-        <div class="card-header">
-            Company Information
-            <span class="close">&times;</span>
-        </div>
-        <div class="card-body" style="margin: 50px auto">
-            <h5 id="modal-company-name" class="card-title">Intel</h5>
-            <p id="modal-company-desc" class="card-text">Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California.</p>
-            <a id="modal-company-email" href="#" class="btn btn-primary">Email Link</a>
-        </div>
-        <div class="card-footer bg-primary border-primary">
-            <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
-        </div>
-    </div>
-</div>
-
-<div id="add-modal" class="modal-custom">
-  <!-- Modal content -->
-    <div class="card" style="width: 75%; height: auto; margin: 7% auto;">
         <div class="card-header">
             Add new company
             <span class="close">&times;</span>
@@ -83,9 +60,9 @@ if ( !isset( $_SESSION['username'] ) ) {
                 </div>
                 <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputSelectType">Type</label>
+                    <label class="input-group-text" for="inputGroupSelectType">Type</label>
                 </div>
-                <select class="custom-select" name="type" id="inputSelectType">
+                <select class="custom-select" id="inputGroupSelectType">
                     <option selected>Choose...</option>
                     <option value="software engineering">Software Engineering</option>
                     <option value="computing">Computing</option>
@@ -114,42 +91,6 @@ if ( !isset( $_SESSION['username'] ) ) {
             <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
         </div>
     </div>
-</div>
-
-<div class= "container-fluid mt-4" >
-    <div class= "row justify-content-center" id="company-block-row">
-    <div class= 'col-auto mb-3'>
-            <div class= 'card border-primary' style='width: 18rem; min-height:15rem;' id='add-comp'>
-                <div class= 'card-body'>
-                    <h5 class='card-title text-primary text-center'> Add New Company</h5>
-                    <img style='margin: auto;'  width='75px' src='assets/add_icon.png'>
-                </div>
-            </div>
-        </div>
-        <?php
-            $company_list = $db->getCompanies();
-
-            foreach ($company_list as $company)
-            {
-                $element = sprintf("
-                <div class='col-auto mb-3'>
-                    <div class='card border-primary' style='width: 18rem; min-height:13rem;' id='card-comp%s'>
-                        <div class='card-body'>
-                            <h5 id= 'card-title' class='card-title text-primary text-center'>%s</h5>
-                            <h6 class='card-subtitle mb-2 text-muted text-center'>Software Engineering</h6>
-                            <p class='card-text text-center' style='height:4.5rem; overflow: hidden;' id='description'>%s</p>
-                        </div>
-                        <div class= 'card-bottom w-100 p-3 bg-primary' id='bottom'>
-                                <button type='button bg-primary' class= 'btn btn-primary border-white' id='more-info'>More Info</button>
-                        </div>
-                    </div>
-                    </div>"
-            ,$company['id'], $company['name'], $company['description'], $company['id']);
-                echo($element);
-            }
-        ?>
-  </div>
-  </div>
 
 </div>
 
