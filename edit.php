@@ -19,7 +19,7 @@ if ( !isset( $_SESSION['username'] ) ) {
     <title>Admin Dashboard</title>
 
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="text/javascript" src="script.js"></script>
+    <!-- <script type="text/javascript" src="script.js"></script> -->
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -29,7 +29,54 @@ if ( !isset( $_SESSION['username'] ) ) {
 
     <script type="text/javascript">
     var company_list = <?php echo json_encode($company_list); ?>;
-    console.log(company_list);
+    var company_id = <?php echo json_encode($_GET['id']); ?>;
+
+    function stickyFormEditCompany(company_id){
+        
+        // Declaring variables that hold the elements
+        input_company_name_element = document.getElementsByName("name");
+        input_company_type_element = document.getElementsByName("type");
+        input_company_address_element = document.getElementsByName("address");
+        input_company_tel_element = document.getElementsByName("tel");
+        input_company_email_element = document.getElementsByName("email");
+        input_company_desc_element = document.getElementsByName("description");
+        
+        // Convert string id to number for iterative purposes
+        company_id = company_id.replace("card-comp", '');
+        console.log(company_id);
+        for (company in company_list){
+            if (company_id === company_list[company]['id']){
+                // Declaring variables that hold company information
+                input_company_name = company_list[company]['name'];
+                input_company_type = company_list[company]['type'];
+                input_company_address = company_list[company]['address'];
+                input_company_tel = company_list[company]['tel'];
+                input_company_email = company_list[company]['email'];
+                input_company_desc = company_list[company]['description'];
+            }
+        } 
+
+        console.log(input_company_type);
+
+        // Changing the contents of the element within the modal
+        input_company_name_element[0].value = input_company_name;
+        input_company_type_element[0].value = input_company_type;
+        input_company_address_element[0].value = input_company_address;
+        input_company_tel_element[0].value = input_company_tel;
+        input_company_email_element[0].value = input_company_email;
+        input_company_desc_element[0].value = input_company_desc;
+    }
+
+    if( document.readyState !== 'loading' ) {
+        stickyFormEditCompany(company_id);
+    
+    } else {
+        document.addEventListener('DOMContentLoaded', function () {
+            stickyFormEditCompany(company_id);
+        });
+    };
+
+    console.log(company_id);
     </script>
 
 </head>
@@ -37,8 +84,8 @@ if ( !isset( $_SESSION['username'] ) ) {
 <body>
 
 <div class="header">
-    <div class="jumbotron text-center" id="headish">
-        <h1 id="header-font">Company Details</h1>
+    <div class="jumbotron text-center p-3" style="height: 100px;" id="headish">
+        <h1 class="display-4" id="header-font">Company Details</h1>
           <?php print $_SESSION['recordAdded']?>
        </div>
         </div>
@@ -48,11 +95,7 @@ if ( !isset( $_SESSION['username'] ) ) {
 <div class="main-body">
 
   <!-- Modal content -->
-    <div class="card" style="width: 75%; height: 75%; margin: 7% auto;">
-        <div class="card-header">
-            Add new company
-            <span class="close">&times;</span>
-        </div>
+    <div class="card" style="width: 75%; height: 75%; margin: 2% auto;">
         <div class="card-body" style="margin: 10px;">
             <form method="POST" action="php_events/event_insertCompany.php">
                 <div class="form-group">
@@ -62,11 +105,11 @@ if ( !isset( $_SESSION['username'] ) ) {
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelectType">Type</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelectType">
+                <select name="type" class="custom-select" id="inputGroupSelectType">
                     <option selected>Choose...</option>
-                    <option value="software engineering">Software Engineering</option>
-                    <option value="computing">Computing</option>
-                    <option value="data">Data</option>
+                    <option value="Software Engineering">Software Engineering</option>
+                    <option value="Computing">Computing</option>
+                    <option value="Data">Data</option>
                 </select>
                 </div>
                 <label for="contact">Contact Details</label>
@@ -84,18 +127,25 @@ if ( !isset( $_SESSION['username'] ) ) {
                     <label for="inputDescription">Description</label>
                     <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="200" name="description"></textarea>
                 </div>
-                <button type="submit" name = "submit" class="btn btn-primary">Submit</button>
+                <div class="row" style="text-decoration: none important!;">
+                    <div class="col">
+                        <button type="submit" name = "submit" class="btn btn-danger"><a href="php_events/event_deleteCompany.php">Delete Company</a></button>
+                    </div>
+                    <div class="col ml-auto">
+                        <div class="float-right">
+                            <button type="submit" name = "submit" class="btn btn-outline-primary"><a href="board.php">Cancel</a></button>
+                            <button type="submit" name = "submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
             </form>
-        </div>
-        <div class="card-footer bg-primary border-primary">
-            <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
         </div>
     </div>
 
 </div>
 
 <div class="footer">
-    <div class="card-footer bg-primary border-primary fixed-bottom">
+    <div class="card-footer bg-primary border-primary">
         <form method="post" action="logout.php">
           <button type="submit" class="btn btn-primary">Log out</button>
         </form>
