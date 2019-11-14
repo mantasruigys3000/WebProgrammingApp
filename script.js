@@ -14,6 +14,40 @@ function initialiseCode(){
     // Arguments:
     // current_id: the id of the element clicked
 
+    function stickyFormEditCompany(company_id){
+        console.log("This is a function");
+        // Declaring variables that hold the elements
+        input_company_name_element = document.getElementById("name");
+        input_company_type_element = document.getElementById("type");
+        input_company_address_element = document.getElementById("address");
+        input_company_tel_element = document.getElementById("tel");
+        input_company_email_element = document.getElementById("email");
+        input_company_desc_element = document.getElementById("desc");
+
+        // Convert string id to number for iterative purposes
+        company_id = company_id.replace("card-comp", '');
+
+        for (company in company_list){
+            if (company_id === company_list[company]['id']){
+                // Declaring variables that hold company information
+                input_company_name = company_list[company]['name'];
+                input_company_type = company_list[company]['type'];
+                input_company_address = company_list[company]['address'];
+                input_company_tel = company_list[company]['tel'];
+                input_company_email = company_list[company]['email'];
+                input_company_desc = company_list[company]['description'];
+            }
+        } 
+
+        // Changing the contents of the element within the modal
+        input_company_name_element.placeholder = input_company_name;
+        input_company_type_element.placeholder = input_company_type;
+        input_company_address_element.placeholder = input_company_address;
+        input_company_tel_element.placeholder = input_company_tel;
+        input_company_email_element.placeholder = input_company_email;
+        input_company_desc_element.placeholder = input_company_desc;
+    }
+
     function getCompanyInfo(current_id){
 
         // Declaring variables that hold the elements
