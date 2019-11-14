@@ -1,4 +1,5 @@
-<?php class db{
+<?php 
+class db{
 
 public $connection;
 
@@ -67,8 +68,48 @@ public $connection;
 
     }
 
-    public function getCompanies(){
-        $sql = "SELECT * FROM tbl_company";
+    public function getCompanies($arraySet,$search,$order,$type,$startrange,$endrange){
+
+
+        
+        
+        
+
+
+        if($arraySet == 0){
+            $sql = "SELECT * FROM tbl_company";
+        }else{
+
+            $orderBy;
+            if ($order == 'A-Z' or $order == ""){
+                $orderBy = 'ASC';
+            }else if($order == 'Z-A'){
+                $orderBy = 'DESC';
+            }
+            
+            if($startrange == ''){
+                $startrange = '2018-01-01 00:00:00';
+            }
+
+            if($endrange == ''){
+                $endrange = '2022-01-01 00:00:00';
+            }
+
+            
+
+
+            $sql = "SELECT * FROM tbl_company
+            where(company_name like '%$search%')
+            AND (company_type like '%$type%')
+            AND (company_last_update BETWEEN '$startrange' and '$endrange')
+            ORDER BY company_name $orderBy";
+
+            var_dump($sql);
+
+
+        }
+
+
         $result =  mysqli_query($this->connection,$sql);
 
         $companies = [];

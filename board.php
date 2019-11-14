@@ -3,7 +3,18 @@ session_start();
 
 require './db.php';
 $db = new db();
-$company_list = $db->getCompanies();
+$company_list = $db->getCompanies(
+    count($_GET),
+    $_GET['search'],
+    $_GET['order'],
+    $_GET['type'],
+    $_GET['startrange'],
+    $_GET['endrange']
+
+);
+
+
+var_dump($_GET["type"]);
 
 if ( !isset( $_SESSION['username'] ) ) {
     // Redirect them to the login page
@@ -39,10 +50,10 @@ if ( !isset( $_SESSION['username'] ) ) {
 <div class="header">
     <div class="jumbotron text-center p-3" id="headish">
         <h1 id="header-font">Dashboard</h1>
-        <form style="margin: auto; width: 80%;" action="">
+        <form style="margin: auto; width: 80%;" action="board.php" method="GET">
 
             <div class="input-group" style="margin: auto;" >
-                <input type="text" class="form-control" placeholder="Search">
+                <input type="text" class="form-control" placeholder="Search" name="search">
                 <button class="btn btn-primary" type="submit">Search</button>
             </div>
 
@@ -53,9 +64,8 @@ if ( !isset( $_SESSION['username'] ) ) {
                 </div>
                 <div class="card-body p-3">
                     <div class="input-group" style="width: 300px;" >
-                    <select class="custom-select" id="inputSelectSearchSort">
-                        <option selected>Sort By...</option>
-                        <option value="A-Z">A-Z</option>
+                    <select class="custom-select" id="inputSelectSearchSort" name="order">
+                        <option selected>A-Z</option>
                         <option value="Z-A">Z-A</option>
                         <option value="Newest">Newest</option>
                         <option value="Oldest">Oldest</option>
@@ -63,9 +73,8 @@ if ( !isset( $_SESSION['username'] ) ) {
                     </div>
 
                     <div class="input-group mt-3" style="width: 300px;" >
-                    <select class="custom-select" id="inputSelectSearchFilter">
-                        <option selected>Company Type</option>
-                        <option value="Software Engineering">Software Engineering</option>
+                    <select class="custom-select" id="inputSelectSearchFilter" name="type">
+                        <option selected>Software Engineering</option>
                         <option value="Computing">Computing</option>
                         <option value="Data">Data</option>
                     </select>
