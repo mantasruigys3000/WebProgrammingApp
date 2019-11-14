@@ -76,14 +76,15 @@ public $connection;
 
         while($row = mysqli_fetch_row($result)){
 
-            $id = strval( $row[0]);
+            $id = strval($row[0]);
             $name = strval($row[1]);
-            $tel = strval($row[2]);
-            $date_added = strval($row[3]);
-            $date_updated = strval($row[4]);
-            $description = strval($row[5]);
-            $email = strval($row[6]);
-            $address = strval($row[7]);
+            $type = strval($row[2]);
+            $tel = strval($row[3]);
+            $date_added = strval($row[4]);
+            $date_updated = strval($row[5]);
+            $description = strval($row[6]);
+            $email = strval($row[7]);
+            $address = strval($row[8]);
 
 
 
@@ -94,6 +95,7 @@ public $connection;
             $comapanyArr = array(
                 "id" => $id,
                 "name" => $name,
+                "type" => $type,
                 "tel" => $tel,
                 "date_added" => $date_added,
                 "date_updated" => $date_updated,

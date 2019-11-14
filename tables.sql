@@ -24,3 +24,5 @@ VALUES('Intel','+44 7700 900702','2019-10-31 14:23:00','2019-10-31 14:23:00','In
 INSERT into tbl_company (company_name,company_tel,company_date_added,company_last_update,company_description,company_email)
 VALUES('IBM','+44 7700 900825','2019-10-31 14:28:00','2019-10-31 14:28:00','The International Business Machines Corporation is an American multinational information technology company headquartered in Armonk, New York, with operations in over 170 countries.','help@ibm.co.uk
 ');
+
+SELECT * FROM `tbl_company` WHERE company_last_update BETWEEN '2019-10-10 00:00:00' AND '2019-11-13 23:59:59';
