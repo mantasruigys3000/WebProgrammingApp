@@ -37,10 +37,54 @@ if ( !isset( $_SESSION['username'] ) ) {
 <body>
 
 <div class="header">
-    <div class="jumbotron text-center" id="headish">
+    <div class="jumbotron text-center p-3" id="headish">
         <h1 id="header-font">Dashboard</h1>
+        <form style="margin: auto; width: 80%;" action="">
+
+            <div class="input-group" style="margin: auto;" >
+                <input type="text" class="form-control" placeholder="Search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+
+            
+            <div class="card mt-3">
+                <div class="card-header">
+                    Advanced Search Settings
+                </div>
+                <div class="card-body p-3">
+                    <div class="input-group" style="width: 300px;" >
+                    <select class="custom-select" id="inputSelectSearchSort">
+                        <option selected>Sort By...</option>
+                        <option value="A-Z">A-Z</option>
+                        <option value="Z-A">Z-A</option>
+                        <option value="Newest">Newest</option>
+                        <option value="Oldest">Oldest</option>
+                    </select>
+                    </div>
+
+                    <div class="input-group mt-3" style="width: 300px;" >
+                    <select class="custom-select" id="inputSelectSearchFilter">
+                        <option selected>Company Type</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                        <option value="Computing">Computing</option>
+                        <option value="Data">Data</option>
+                    </select>
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <label for="inputStartDate">Start Date</label>
+                        <input type="date" id="inputStartDate" name="startrange">
+                        <label for="inputEndDate">End Date</label>
+                        <input type="date" id="inputEndDate" name="endrange">
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+<!--
         <div class="search-body">
         <input class="search-bar" type="text" id="search-input" placeholder ="eg: 'intel' " onkeyup="searchFunction()">
+        -->
         <div>
           <?php print $_SESSION['recordAdded']?>
        </div>
@@ -49,6 +93,7 @@ if ( !isset( $_SESSION['username'] ) ) {
 </div>
 
 <div class="main-body">
+
 
 <!-- The Modal -->
 <div id="edit-modal" class="modal-custom">
@@ -85,11 +130,11 @@ if ( !isset( $_SESSION['username'] ) ) {
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputSelectType">Type</label>
                 </div>
-                <select class="custom-select" name="type" id="inputSelectType">
+                <select class="custom-select" name="type" id="inputSelectType" require>
                     <option selected>Choose...</option>
-                    <option value="software engineering">Software Engineering</option>
-                    <option value="computing">Computing</option>
-                    <option value="data">Data</option>
+                    <option value="Software Engineering">Software Engineering</option>
+                    <option value="Computing">Computing</option>
+                    <option value="Data">Data</option>
                 </select>
                 </div>
                 <label for="contact">Contact Details</label>
@@ -127,7 +172,6 @@ if ( !isset( $_SESSION['username'] ) ) {
             </div>
         </div>
         <?php
-            $company_list = $db->getCompanies();
 
             foreach ($company_list as $company)
             {
@@ -136,7 +180,7 @@ if ( !isset( $_SESSION['username'] ) ) {
                     <div class='card border-primary' style='width: 18rem; min-height:13rem;' id='card-comp%s'>
                         <div class='card-body'>
                             <h5 id= 'card-title' class='card-title text-primary text-center'>%s</h5>
-                            <h6 class='card-subtitle mb-2 text-muted text-center'>Software Engineering</h6>
+                            <h6 class='card-subtitle mb-2 text-muted text-center'>%s</h6>
                             <p class='card-text text-center' style='height:4.5rem; overflow: hidden;' id='description'>%s</p>
                         </div>
                         <div class= 'card-bottom w-100 p-3 bg-primary' id='bottom'>
@@ -144,7 +188,7 @@ if ( !isset( $_SESSION['username'] ) ) {
                         </div>
                     </div>
                     </div>"
-            ,$company['id'], $company['name'], $company['description'], $company['id']);
+            ,$company['id'], $company['name'], $company['type'], $company['description'], $company['id']);
                 echo($element);
             }
         ?>
