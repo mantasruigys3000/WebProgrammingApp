@@ -25,7 +25,7 @@
     $sql = "INSERT into tbl_company (company_name,company_type,company_tel,company_date_added,company_last_update,company_description,company_email,company_address)
     VALUES($name,$type,$tel,$date,$date,$description,$email,$address)";
     $submit = $_POST['submit'];
-    
+
 
 
 //if record added successfully redirect them to board and display message

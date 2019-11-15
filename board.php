@@ -57,7 +57,7 @@ if ( !isset( $_SESSION['username'] ) ) {
                 <button class="btn btn-primary" type="submit">Search</button>
             </div>
 
-            
+
             <div class="card mt-3">
                 <div class="card-header">
                     Advanced Search Settings
@@ -89,7 +89,7 @@ if ( !isset( $_SESSION['username'] ) ) {
                 </div>
             </div>
         </form>
-        
+
 <!--
         <div class="search-body">
         <input class="search-bar" type="text" id="search-input" placeholder ="eg: 'intel' " onkeyup="searchFunction()">
@@ -119,6 +119,9 @@ if ( !isset( $_SESSION['username'] ) ) {
         </div>
         <div class="card-footer bg-primary border-primary">
             <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
+            <form action="edit.php? id  " method="POST">
+            <button type="button bg-primary" class="btn btn-primary" id="edit">Edit Infomation</button>
+          </form>
         </div>
     </div>
 </div>
@@ -193,7 +196,7 @@ if ( !isset( $_SESSION['username'] ) ) {
                             <p class='card-text text-center' style='height:4.5rem; overflow: hidden;' id='description'>%s</p>
                         </div>
                         <div class= 'card-bottom w-100 p-3 bg-primary' id='bottom'>
-                                <button type='button bg-primary' class= 'btn btn-primary border-white' id='more-info'>More Info</button>
+                                <button type='button bg-primary' class= 'btn btn-primary border-white' id='more-info'>View & Edit</button>
                         </div>
                     </div>
                     </div>"
@@ -212,7 +215,7 @@ if ( !isset( $_SESSION['username'] ) ) {
           <button type="submit" class="btn btn-primary">Log out</button>
         </form>
     </div>
-    
+
 </div>
 
 </body>

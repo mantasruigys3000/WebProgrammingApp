@@ -3,7 +3,15 @@ session_start();
 
 require './db.php';
 $db = new db();
-$company_list = $db->getCompanies();
+$company_list = $db->getCompanies(
+  count($_GET),
+  $_GET['search'],
+  $_GET['order'],
+  $_GET['type'],
+  $_GET['startrange'],
+  $_GET['endrange']
+);
+
 
 if ( !isset( $_SESSION['username'] ) ) {
     // Redirect them to the login page
@@ -32,7 +40,7 @@ if ( !isset( $_SESSION['username'] ) ) {
     var company_id = <?php echo json_encode($_GET['id']); ?>;
 
     function stickyFormEditCompany(company_id){
-        
+
         // Declaring variables that hold the elements
         input_company_name_element = document.getElementsByName("name");
         input_company_type_element = document.getElementsByName("type");
@@ -40,7 +48,7 @@ if ( !isset( $_SESSION['username'] ) ) {
         input_company_tel_element = document.getElementsByName("tel");
         input_company_email_element = document.getElementsByName("email");
         input_company_desc_element = document.getElementsByName("description");
-        
+
         // Convert string id to number for iterative purposes
         company_id = company_id.replace("card-comp", '');
         console.log(company_id);
@@ -54,7 +62,7 @@ if ( !isset( $_SESSION['username'] ) ) {
                 input_company_email = company_list[company]['email'];
                 input_company_desc = company_list[company]['description'];
             }
-        } 
+        }
 
         console.log(input_company_type);
 
@@ -69,7 +77,7 @@ if ( !isset( $_SESSION['username'] ) ) {
 
     if( document.readyState !== 'loading' ) {
         stickyFormEditCompany(company_id);
-    
+
     } else {
         document.addEventListener('DOMContentLoaded', function () {
             stickyFormEditCompany(company_id);
@@ -86,7 +94,7 @@ if ( !isset( $_SESSION['username'] ) ) {
 <div class="header">
     <div class="jumbotron text-center p-3" style="height: 100px;" id="headish">
         <h1 class="display-4" id="header-font">Company Details</h1>
-          <?php print $_SESSION['recordAdded']?>
+
        </div>
         </div>
     </div>
@@ -150,7 +158,7 @@ if ( !isset( $_SESSION['username'] ) ) {
           <button type="submit" class="btn btn-primary">Log out</button>
         </form>
     </div>
-    
+
 </div>
 
 </body>
