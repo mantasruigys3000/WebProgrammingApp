@@ -3,9 +3,6 @@
     padding: 0;
 }
 
-.btn{
-    border-radius: 25px !important;
-}
 
 body{
     background-color: rgba(95, 194, 224, 0.658);
@@ -227,6 +224,8 @@ body{
 #more-info
 {
     width: 100px;
+    font-size: larger;
+    padding: 0%;
 }
 #warn {
   color: red;

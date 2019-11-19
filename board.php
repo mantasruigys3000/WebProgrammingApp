@@ -36,6 +36,9 @@ if ( !isset( $_SESSION['username'] ) ) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Latest compiled JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
@@ -46,54 +49,50 @@ if ( !isset( $_SESSION['username'] ) ) {
 </head>
 
 <body>
+    <div class="header">
+        <div class="jumbotron text-center p-3" id="headish">
+            <h1 id="header-font">Dashboard</h1>
+            <form style="margin: auto; width: 80%;" action="board.php" method="GET">
 
-<div class="header">
-    <div class="jumbotron text-center p-3" id="headish">
-        <h1 id="header-font">Dashboard</h1>
-        <form style="margin: auto; width: 80%;" action="board.php" method="GET">
-
-            <div class="input-group" style="margin: auto;" >
-                <input type="text" class="form-control" placeholder="Search" name="search">
-                <button class="btn btn-primary" type="submit">Search</button>
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="button input-group-text outline-primary" id="basic-addon2" ></button>
             </div>
+            <input type="text" class="form-control text-center" placeholder="Try searching for a company!" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="input-group-text outline-primary" id="basic-addon2">Search</button>
+            </div>
+        </div>
 
-
-            <div class="card mt-3">
-                <div class="card-header">
-                    Advanced Search Settings
-                </div>
-                <div class="card-body p-3">
-                    <div class="input-group" style="width: 300px;" >
+        <div class="card mt-3 collapse in" id='adv-search'>
+            <div class="card-header">
+                Advanced Search Settings
+            </div>
+            <div class="card-body p-3">
+                <div class="input-group" style="width: 300px;" >
                     <select class="custom-select" id="inputSelectSearchSort" name="order">
                         <option selected>A-Z</option>
                         <option value="Z-A">Z-A</option>
                         <option value="Newest">Newest</option>
                         <option value="Oldest">Oldest</option>
                     </select>
-                    </div>
-
-                    <div class="input-group mt-3" style="width: 300px;" >
+                </div>
+                <div class="input-group mt-3" style="width: 300px;" >
                     <select class="custom-select" id="inputSelectSearchFilter" name="type">
                         <option selected>Software Engineering</option>
                         <option value="Computing">Computing</option>
                         <option value="Data">Data</option>
                     </select>
-                    </div>
-
-                    <div class="input-group mt-3">
+                </div>
+                <div class="input-group mt-3">
                         <label for="inputStartDate">Start Date</label>
                         <input type="date" id="inputStartDate" name="startrange">
                         <label for="inputEndDate">End Date</label>
                         <input type="date" id="inputEndDate" name="endrange">
-                    </div>
                 </div>
             </div>
-        </form>
-
-<!--
-        <div class="search-body">
-        <input class="search-bar" type="text" id="search-input" placeholder ="eg: 'intel' " onkeyup="searchFunction()">
-        -->
+        </div>
+    </form>
         <div>
           <?php print $_SESSION['recordAdded']?>
        </div>
@@ -176,10 +175,10 @@ if ( !isset( $_SESSION['username'] ) ) {
 <div class= "container-fluid mt-4" >
     <div class= "row justify-content-center" id="company-block-row">
     <div class= 'col-auto mb-3'>
-            <div class= 'card border-primary' style='width: 18rem; min-height:15rem;' id='add-comp'>
+            <div class= 'card border-primary' style='width: 18rem; min-height:14.5rem;' id='add-comp'>
                 <div class= 'card-body'>
                     <h5 class='card-title text-primary text-center'> Add New Company</h5>
-                    <img style='margin: auto;'  width='75px' src='assets/add_icon.png'>
+                    <img style='  display: block; margin-left: auto; margin-right: auto; width: 40%; margin-top: 32.5px;'  width='75px' src='assets/add_icon.png'>
                 </div>
             </div>
         </div>
@@ -196,7 +195,7 @@ if ( !isset( $_SESSION['username'] ) ) {
                             <p class='card-text text-center' style='height:4.5rem; overflow: hidden;' id='description'>%s</p>
                         </div>
                         <div class= 'card-bottom w-100 p-3 bg-primary' id='bottom'>
-                                <button type='button bg-primary' class= 'btn btn-primary border-white' id='more-info'>View & Edit</button>
+                                <button type='button' class= 'btn btn-primary text-white text-uppercase font-weight-bold' style='width: 16rem;' id='more-info'>View & Edit</button>
                         </div>
                     </div>
                     </div>"
@@ -210,7 +209,7 @@ if ( !isset( $_SESSION['username'] ) ) {
 </div>
 
 <div class="footer">
-    <div class="card-footer bg-primary border-primary fixed-bottom">
+    <div class="card-footer bg-primary border-primary fixed-bottom" style="margin-top:10px;">
         <form method="post" action="logout.php">
           <button type="submit" class="btn btn-primary">Log out</button>
         </form>
