@@ -224,8 +224,9 @@ body{
 {
     width: 100px;
     font-size: larger;
-    padding: 0%;
+    padding: 0;
 }
 #warn {
   color: red;
 }
+

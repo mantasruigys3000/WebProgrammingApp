@@ -69,13 +69,6 @@ public $connection;
     }
 
     public function getCompanies($arraySet,$search,$order,$type,$startrange,$endrange){
-
-
-        
-        
-        
-
-
         if($arraySet == 0){
             $sql = "SELECT * FROM tbl_company";
         }else{
