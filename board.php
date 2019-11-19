@@ -57,9 +57,9 @@
                     <div class="input-group-prepend">
                         <button class="button input-group-text outline-primary " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > > </button>
                     </div>
-                    <input type="text" class="form-control text-center" placeholder="Try searching for a company!" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control text-center" placeholder="Try searching for a company!" name="search">
                     <div class="input-group-append">
-                        <button class="input-group-text outline-primary" id="search" >Search</button>
+                        <button class="input-group-text outline-primary" type="text" >Search</button>
                     </div>
                 </div>
                 
@@ -81,6 +81,7 @@
                                 <option selected>Software Engineering</option>
                                 <option value="Computing">Computing</option>
                                 <option value="Data">Data</option>
+                                <option value="All">All</option>
                             </select>
                         </div>
                         <div class="input-group mt-3">
