@@ -24,6 +24,7 @@
 ?>
 
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -54,48 +55,57 @@
             <form style="margin: auto; width: 80%;" action="board.php" method="GET">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <button class="button input-group-text outline-primary" id="basic-addon2" ></button>
+                        <button class="button input-group-text outline-primary " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > > </button>
                     </div>
-                    <input type="text" class="form-control text-center" placeholder="Try searching for a company!" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control text-center" placeholder="Try searching for a company!" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button class="input-group-text outline-primary" id="basic-addon2">Search</button>
+                        <button class="input-group-text outline-primary" id="search" >Search</button>
+                    </div>
+                </div>
+                
+                <div class="card mt-3" id="collapse1" style="display: none">
+                    <div class="card-header">
+                        Advanced Search Settings
+                    </div>
+                    <div class="card-body p-3">
+                        <div class="input-group" style="width: 300px;" >
+                            <select class="custom-select" id="inputSelectSearchSort" name="order">
+                                <option selected>A-Z</option>
+                                <option value="Z-A">Z-A</option>
+                                <option value="Newest">Newest</option>
+                                <option value="Oldest">Oldest</option>
+                            </select>
+                        </div>
+                        <div class="input-group mt-3" style="width: 300px;" >
+                            <select class="custom-select" id="inputSelectSearchFilter" name="type">
+                                <option selected>Software Engineering</option>
+                                <option value="Computing">Computing</option>
+                                <option value="Data">Data</option>
+                            </select>
+                        </div>
+                        <div class="input-group mt-3">
+                                <label for="inputStartDate">Start Date</label>
+                                <input type="date" id="inputStartDate" name="startrange">
+                                <label for="inputEndDate">End Date</label>
+                                <input type="date" id="inputEndDate" name="endrange">
+                        </div>
                     </div>
                 </div>
             </form>
-
-            <div class="card mt-3 collapse in" id='adv-search'>
-                <div class="card-header">
-                    Advanced Search Settings
-                </div>
-                <div class="card-body p-3">
-                    <div class="input-group" style="width: 300px;" >
-                        <select class="custom-select" id="inputSelectSearchSort" name="order">
-                            <option selected>A-Z</option>
-                            <option value="Z-A">Z-A</option>
-                            <option value="Newest">Newest</option>
-                            <option value="Oldest">Oldest</option>
-                        </select>
-                    </div>
-                    <div class="input-group mt-3" style="width: 300px;" >
-                        <select class="custom-select" id="inputSelectSearchFilter" name="type">
-                            <option selected>Software Engineering</option>
-                            <option value="Computing">Computing</option>
-                            <option value="Data">Data</option>
-                        </select>
-                    </div>
-                    <div class="input-group mt-3">
-                            <label for="inputStartDate">Start Date</label>
-                            <input type="date" id="inputStartDate" name="startrange">
-                            <label for="inputEndDate">End Date</label>
-                            <input type="date" id="inputEndDate" name="endrange">
-                    </div>
-                </div>
-            </div>
-        <div>
-          <?php print $_SESSION['recordAdded']?>
-       </div>
     </div>
 
+    <script>
+        function toggleAdvSearch(){
+            var x = document.getElementById("collapse1");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } 
+            else {
+                x.style.display = "none";
+            }
+            return false();
+        }
+    </script>
 
     <div class="main-body">
         <div id="edit-modal" class="modal-custom">
@@ -172,7 +182,7 @@
             <div class= 'col-auto mb-3'>
                     <div class= 'card border-primary' style='width: 18rem; min-height:14.5rem;' id='add-comp'>
                         <div class= 'card-body'>
-                            <h5 class='card-title text-primary text-center'> Add New Company</h5>
+                            <h5 class='card-title text-primary text-center '> Add New Company</h5>
                             <img style='  display: block; margin-left: auto; margin-right: auto; width: 40%; margin-top: 32.5px;'  width='75px' src='assets/add_icon.png'>
                         </div>
                     </div>
