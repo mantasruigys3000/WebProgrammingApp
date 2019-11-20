@@ -127,8 +127,8 @@
                 </div>
                 <div class="card-footer bg-primary border-primary">
                     <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
-                    <form action="edit.php? id  " method="POST">
-                        <button type="button bg-primary" class="btn btn-primary" id="edit">Edit Infomation</button>
+                    <form action="" method="POST" id="edit-button-form">
+                        <button type="button bg-primary" class="btn btn-primary" id="edit-button">Edit Infomation</button>
                     </form>
                 </div>
             </div>

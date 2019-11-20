@@ -1,52 +1,16 @@
 function initialiseCode(){
-
     
-
-    // Get the modal
+    // Store modals in a variable
     var modal = document.getElementsByClassName("modal-custom");
-    console.log(modal[0])
 
-    // Get the <span> element that closes the modal
+    // Get the <span> elements that closes the modal
+    // spanAlt is used as an alternative button to close the modal
     var span = document.getElementsByClassName("close");
     var spanAlt = document.querySelectorAll('.modal-custom .card-footer #close');
 
     // Get company information from global array and display it in the more info modal.
     // Arguments:
     // current_id: the id of the element clicked
-
-    function stickyFormEditCompany(company_id){
-        console.log("This is a function");
-        // Declaring variables that hold the elements
-        input_company_name_element = document.getElementById("name");
-        input_company_type_element = document.getElementById("type");
-        input_company_address_element = document.getElementById("address");
-        input_company_tel_element = document.getElementById("tel");
-        input_company_email_element = document.getElementById("email");
-        input_company_desc_element = document.getElementById("desc");
-
-        // Convert string id to number for iterative purposes
-        company_id = company_id.replace("card-comp", '');
-
-        for (company in company_list){
-            if (company_id === company_list[company]['id']){
-                // Declaring variables that hold company information
-                input_company_name = company_list[company]['name'];
-                input_company_type = company_list[company]['type'];
-                input_company_address = company_list[company]['address'];
-                input_company_tel = company_list[company]['tel'];
-                input_company_email = company_list[company]['email'];
-                input_company_desc = company_list[company]['description'];
-            }
-        } 
-
-        // Changing the contents of the element within the modal
-        input_company_name_element.placeholder = input_company_name;
-        input_company_type_element.placeholder = input_company_type;
-        input_company_address_element.placeholder = input_company_address;
-        input_company_tel_element.placeholder = input_company_tel;
-        input_company_email_element.placeholder = input_company_email;
-        input_company_desc_element.placeholder = input_company_desc;
-    }
 
     function getCompanyInfo(current_id){
 
@@ -71,6 +35,9 @@ function initialiseCode(){
     }
 
     // When the user clicks on <span> (x), close the modal
+    // Index in square brackets determines the type of modal being closed.
+    // 0: Company Information Modal
+    // 1: Add New Company Modal
 
     span[0].onclick = function() {
         modal[0].style.display = "none";
@@ -97,10 +64,10 @@ function initialiseCode(){
     }
     }
     
-    // Query selects all grid blocks within the company row list and for each item adds an event listener
+    // Query that selects all grid blocks within the company list and for each item adds three event listeners
     document.querySelectorAll('#company-block-row .card').forEach(item => {
 
-        // Event listener when mouse enters the card
+        // 1. Event listener for when mouse enters the card
         item.addEventListener('mouseover', function(event){
             // Specific edit button selected and displayed
             var editButton = document.getElementById((this.id).concat("-btn"));
@@ -109,7 +76,7 @@ function initialiseCode(){
             }
         })
 
-        // Event listener when mouse clicks the card
+        // 2. Event listener for when mouse clicks the card
         item.addEventListener('click', function(event){
             // get the modal by ID
             current_id = this.id;
@@ -124,6 +91,9 @@ function initialiseCode(){
 
             if (current_id.includes("card-comp")){
                 var btn = document.getElementById((current_id));
+                var edit_button =  document.getElementById('edit-button-form');
+                edit_button.action = 'edit.php?id='+current_id;
+                console.log(edit_button.action);
                 btn.onclick = function() {
                     modal[0].style.display = "block";
                     getCompanyInfo(current_id);
@@ -134,7 +104,7 @@ function initialiseCode(){
             }
         })
 
-        // Event listener when mouse leaves the card
+        // 3. Event listener for when mouse leaves the card
         item.addEventListener('mouseout', function(event){
             var editButton = document.getElementById((this.id).concat("-btn"));
             if (editButton){
@@ -161,6 +131,8 @@ function initialiseCode(){
           }
     })
 }
+
+// This selection is used to ensure that JS can only modify the DOM tree after it has finished loading
 
 if( document.readyState !== 'loading' ) {
     console.log( 'document is already ready, just execute code here' );
