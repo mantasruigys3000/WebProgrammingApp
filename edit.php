@@ -109,12 +109,12 @@ $found = True;
 
                 <div class="row" style="text-decoration: none important!;">
                     <div class="col">
-                        <button type="submit" name = "submit" class="btn btn-danger"><a href="php_events/event_deleteCompany.php">Delete Company</a></button>
+                        <?php echo("<button type='submit' name = 'submit' class='btn btn-danger'><a style='text-decoration: none !important; color: white !important;' href='php_events/event_deleteCompany.php?id=".$_GET['id']."'>Delete Company</a></button>"); ?>
                     </div>
                     <div class="col ml-auto">
                         <div class="float-right">
                             <button type="submit" name = "submit" class="btn btn-outline-primary"><a href="board.php">Cancel</a></button>
-                            <button type="submit" name = "submit" class="btn btn-primary">Save Changes</button>
+                            <?php echo("<button type='submit' name = 'submit' class='btn btn-primary'><a style='text-decoration: none !important; color: white !important;' href='php_events/event_editCompany.php?id=".$_GET['id']."'>Save Changes</a></button>"); ?>
                         </div>
                     </div>
                 </div>
