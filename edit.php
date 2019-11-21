@@ -57,8 +57,6 @@ $found = True;
 
     <div class="card" style="width: 75%; height: 75%; margin: 2% auto;">
         <div class="card-body" style="margin: 10px;">
-            <form method="POST" action="php_events/event_insertCompany.php">
-
                 <?php 
                     foreach ($company_list as $company){
                         if ($company['id'] == $company_id){
@@ -71,54 +69,54 @@ $found = True;
 
                 if ($found){
                     $element = sprintf("
-                        <div class='form-group'>
-                        <input value='%s' class='form-control form-control-lg' type='text' placeholder='Company Name' name='name' required>
-                        </div>
-                        <div class='input-group mb-3'>
-                        <div class='input-group-prepend'>
-                            <label class='input-group-text' for='inputGroupSelectType'>Type</label>
-                        </div>
-                        <select selected='%s' name='type' class='custom-select' id='inputGroupSelectType'>
-                            <option value='Software Engineering'>Software Engineering</option>
-                            <option value='Computing'>Computing</option>
-                            <option value='Data'>Data</option>
-                        </select>
-                        </div>
-                        <label for='contact'>Contact Details</label>
-                        <div id='contact' class='form-group'>
-                            <input value='%s' id='inputAddress' class='form-control' type='text' placeholder='Company Address' name='address'>
-                        </div>
-                        <div class='form-group'>
-                            <input value='%s' id='inputTel' class='form-control' type='tex' placeholder='Company Telephone - 11 digits long' name='tel'
-                            pattern='[0-9]{3}[0-9]{4}[0-9]{4}' required>
-                        </div>
-                        <div class='form-group'>
-                            <input value='%s' id='inputEmail' class='form-control' type='email' placeholder='Company Email' name='email'>
-                        </div>
-                        <div class='form-group'>
-                            <label for='inputDescription'>Description</label>
-                            <textarea class='form-control' rows='5' id='comment' style='resize: none;' maxlength='200' name='description'>%s</textarea>
-                        </div>
-                        ",$company['name'], $company['type'], $company['address'], $company['tel'], $company['email'], $company['description']);
+                        <form method='POST' action='php_events/event_editCompany.php?id=%s'>
+                            <div class='form-group'>
+                            <input value='%s' class='form-control form-control-lg' type='text' placeholder='Company Name' name='name' required>
+                            </div>
+                            <div class='input-group mb-3'>
+                            <div class='input-group-prepend'>
+                                <label class='input-group-text' for='inputGroupSelectType'>Type</label>
+                            </div>
+                            <select selected='%s' name='type' class='custom-select' id='inputGroupSelectType'>
+                                <option value='Software Engineering'>Software Engineering</option>
+                                <option value='Computing'>Computing</option>
+                                <option value='Data'>Data</option>
+                            </select>
+                            </div>
+                            <label for='contact'>Contact Details</label>
+                            <div id='contact' class='form-group'>
+                                <input value='%s' id='inputAddress' class='form-control' type='text' placeholder='Company Address' name='address'>
+                            </div>
+                            <div class='form-group'>
+                                <input value='%s' id='inputTel' class='form-control' type='tex' placeholder='Company Telephone - 11 digits long' name='tel'
+                                pattern='[0-9]{3}[0-9]{4}[0-9]{4}' required>
+                            </div>
+                            <div class='form-group'>
+                                <input value='%s' id='inputEmail' class='form-control' type='email' placeholder='Company Email' name='email'>
+                            </div>
+                            <div class='form-group'>
+                                <label for='inputDescription'>Description</label>
+                                <textarea class='form-control' rows='5' id='comment' style='resize: none;' maxlength='200' name='description'>%s</textarea>
+                            </div>
+                            <div class='row' style='text-decoration: none important!;'>
+                                <div class='col'>
+                                    <button type='submit' name = 'submit' class='btn btn-danger'><a style='text-decoration: none !important; color: white !important;' href='php_events/event_deleteCompany.php?id=%s''>Delete Company</a></button>
+                                </div>
+                                <div class='col ml-auto'>
+                                    <div class='float-right'>
+                                        <button type='submit' name = 'submit' class='btn btn-outline-primary'><a href='board.php'>Cancel</a></button>
+                                        <button type='submit' name = 'submit' class='btn btn-primary'>Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        ", $_GET['id'], $company['name'], $company['type'], $company['address'], $company['tel'], $company['email'], $company['description'], $_GET['id']);
                         echo($element);
                 }else{
                     header("Location: board.php");
                 }
 
                 ?>
-
-                <div class="row" style="text-decoration: none important!;">
-                    <div class="col">
-                        <?php echo("<button type='submit' name = 'submit' class='btn btn-danger'><a style='text-decoration: none !important; color: white !important;' href='php_events/event_deleteCompany.php?id=".$_GET['id']."'>Delete Company</a></button>"); ?>
-                    </div>
-                    <div class="col ml-auto">
-                        <div class="float-right">
-                            <button type="submit" name = "submit" class="btn btn-outline-primary"><a href="board.php">Cancel</a></button>
-                            <?php echo("<button type='submit' name = 'submit' class='btn btn-primary'><a style='text-decoration: none !important; color: white !important;' href='php_events/event_editCompany.php?id=".$_GET['id']."'>Save Changes</a></button>"); ?>
-                        </div>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 

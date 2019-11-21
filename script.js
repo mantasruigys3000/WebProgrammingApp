@@ -94,10 +94,8 @@ function initialiseCode(){
                 var edit_button =  document.getElementById('edit-button-form');
                 edit_button.action = 'edit.php?id='+current_id;
                 console.log(edit_button.action);
-                btn.onclick = function() {
-                    modal[0].style.display = "block";
-                    getCompanyInfo(current_id);
-                }
+                modal[0].style.display = "block";
+                getCompanyInfo(current_id);
             }else{
                 modal[1].style.display = "block";
                 console.log(modal[1]);
