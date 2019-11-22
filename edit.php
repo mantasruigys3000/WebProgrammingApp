@@ -88,7 +88,7 @@ $found = True;
                                 <input value='%s' id='inputAddress' class='form-control' type='text' placeholder='Company Address' name='address'>
                             </div>
                             <div class='form-group'>
-                                <input value='%s' id='inputTel' class='form-control' type='tex' placeholder='Company Telephone - 11 digits long' name='tel'
+                                <input value='%s' id='inputTel' class='form-control' type='text' placeholder='Company Telephone - 11 digits long' name='tel'
                                 pattern='[0-9]{3}[0-9]{4}[0-9]{4}' required>
                             </div>
                             <div class='form-group'>

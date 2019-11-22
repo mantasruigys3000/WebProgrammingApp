@@ -32,12 +32,13 @@
     if ($sql){
          header("Location: ../board.php");
          session_start();
-         $_SESSION['recordAdded'] = " Record added successfully";
+         $_SESSION['message'] = "Record added successfully";
 
 //else display this message
      }else{
+        header("Location: ../board.php");
          session_start();
-         $_SESSION['recordAdded'] =  "problem adding data";
+         $_SESSION['message'] =  "Problem adding this record.";
     }
 
 
