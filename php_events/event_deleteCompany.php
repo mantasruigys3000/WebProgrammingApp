@@ -5,11 +5,11 @@ $db = new db();
 
 $id = str_replace("card-comp","",$_GET['id']);
 
-$sql = "DELETE FROM tbl_company WHERE company_id = $id";
+$db->deleteCompany($id);
 
-var_dump($sql);
 
-mysqli_query($db->connection,$sql);
+
+
 
 if ($sql){
     header("Location: ../board.php");

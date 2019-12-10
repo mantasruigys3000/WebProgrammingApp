@@ -69,6 +69,7 @@ public $connection;
     }
 
     public function getCompanies($arraySet,$search,$order,$type,$startrange,$endrange){
+
         if($arraySet == 0){
             $sql = "SELECT * FROM tbl_company";
         }else{
@@ -120,12 +121,6 @@ public $connection;
             $email = strval($row[7]);
             $address = strval($row[8]);
 
-
-
-
-            
-        
-
             $comapanyArr = array(
                 "id" => $id,
                 "name" => $name,
@@ -146,19 +141,17 @@ public $connection;
 
     }
 
+    public function deleteCompany($companyID){
 
+        $sql = "DELETE FROM tbl_company WHERE company_id = $companyID";
+        mysqli_query($this->connection,$sql);
 
-
+    }
+    
+    
+    
 
 }
-
-
-
-
-
-
-
-
 
 
 ?>
