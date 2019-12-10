@@ -10,6 +10,8 @@
     $address = $_POST['address'];
     $type = $_POST['type'];
 
+    // Change quotes in description
+    $description = str_replace("\"","'",$description);
     // Get date and wrap input
     $date = date('Y-m-d h:m:s', time());
     $date = "\"" . $date .  "\"";

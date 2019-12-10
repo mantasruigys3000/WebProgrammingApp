@@ -11,6 +11,11 @@ $address = $_POST['address'];
 $type = $_POST['type'];
 $id = str_replace("card-comp","",$_GET['id']);
 //Get date and wrap input in quotes
+
+// Change quotes in description
+$description = str_replace("\"","'",$description);
+
+
 $date = date('Y-m-d h:m:s', time());
 $date = "\"" . $date .  "\"";
 $name = "\"" . $name .  "\"";
