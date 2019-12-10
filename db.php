@@ -151,7 +151,7 @@ private $connection; //Connection attribute to be used by methods
     //Inserts a company with given information
     public function insertCompany($name,$type,$tel,$date,$description,$email,$address){
         $sql = "INSERT into tbl_company (company_name,company_type,company_tel,company_date_added,company_last_update,company_description,company_email,company_address)
-        VALUES($name,$type,$tel,$date,$date,'$description',$email,$address)";
+        VALUES($name,$type,$tel,$date,$date,$description,$email,$address)";
 
         mysqli_query($this->connection,$sql);
         return 1;

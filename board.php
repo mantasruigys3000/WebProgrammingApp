@@ -1,7 +1,12 @@
 <?php
     session_start();
+    if(!isset($_GET['page'])){
+        $_GET['page'] =1 ;
+        
+    }
 
     $maxCards = 11;
+
 
     require './db.php';
     $db = new db();
