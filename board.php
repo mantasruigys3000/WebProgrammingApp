@@ -2,7 +2,7 @@
     session_start();
     if(!isset($_GET['page'])){
         $_GET['page'] =1 ;
-        
+
     }
 
     $maxCards = 11;
@@ -24,7 +24,7 @@
     );
 
 
-    var_dump($_GET["type"]);
+    
 
     if ( !isset( $_SESSION['username'] ) ) {
         // Redirect them to the login page
