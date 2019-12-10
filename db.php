@@ -108,11 +108,15 @@ private $connection; //Connection attribute to be used by methods
 
         
         $result =  mysqli_query($this->connection,$sql);
+        /*
         if(mysqli_error($this->connection) != NULL) {
             echo mysqli_error($this->connection);
         }
+        */
+
 
         $companies = [];
+        
 
         //Creating array object
         while($row = mysqli_fetch_row($result)){
@@ -186,7 +190,7 @@ private $connection; //Connection attribute to be used by methods
     public function getCompanyCount(){
         $sql = "SELECT count(company_id) from tbl_company";
         $result =  mysqli_query($this->connection,$sql);
-        
+
         if(mysqli_error($this->connection) != NULL) {
             echo mysqli_error($this->connection);
         }

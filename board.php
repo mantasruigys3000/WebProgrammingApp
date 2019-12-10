@@ -21,7 +21,7 @@
         $_GET['startrange'],
         $_GET['endrange'],
         ($_GET['page'] -1) * $maxCards,
-        (($_GET['page'] -1) * $maxCards) + $maxCards
+        $maxCards
 
 
     );
