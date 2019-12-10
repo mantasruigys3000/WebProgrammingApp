@@ -45,9 +45,10 @@ $found = True;
 <body>
 
 <div class="header">
-    <div class="jumbotron text-center p-3" style="height: 100px;" id="headish">
-        <h1 class="display-4" id="header-font">Company Details</h1>
-
+<div class="jumbotron text-center p-3" id="headish">
+        <form method="POST" class="loginform" action="board.php">
+            <button class="btn text-uppercase font-weight-bold" id="header-font">Company details</button>
+        </form>
        </div>
         </div>
     </div>
@@ -122,14 +123,14 @@ $found = True;
 
 </div>
 
-<div class="footer">
-    <div class="card-footer bg-primary border-primary">
-        <form method="post" action="logout.php">
-          <button type="submit" class="btn btn-primary">Log out</button>
-        </form>
-    </div>
-
-</div>
+<div class="footer" style="margin-top:80px" >
+        <!-- Footer -->
+            <div class="card-footer bg-primary border-primary fixed-bottom" style="margin-top:10px;">
+                <form method="post" action="logout.php">
+                <button type="submit" class="btn btn-primary text-uppercase font-weight-bold">Log out</button>
+                </form>
+            </div>
+        </div>
 
 </body>
 </html>
