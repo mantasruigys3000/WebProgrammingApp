@@ -1,20 +1,33 @@
 <?php
     session_start();
+    if(!isset($_GET['page'])){
+        $_GET['page'] =1 ;
+
+    }
+
+    $maxCards = 11;
+
+    
+
 
     require './db.php';
     $db = new db();
+
     $company_list = $db->getCompanies(
         count($_GET),
         $_GET['search'],
         $_GET['order'],
         $_GET['type'],
         $_GET['startrange'],
-        $_GET['endrange']
+        $_GET['endrange'],
+        ($_GET['page'] -1) * $maxCards,
+        (($_GET['page'] -1) * $maxCards) + $maxCards
+
 
     );
 
 
-    var_dump($_GET["type"]);
+    
 
     if ( !isset( $_SESSION['username'] ) ) {
         // Redirect them to the login page

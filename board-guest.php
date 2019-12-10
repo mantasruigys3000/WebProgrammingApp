@@ -1,5 +1,11 @@
 <?php
     require './db.php';
+    $maxCards = 12;
+    if(!isset($_GET['page'])){
+        $_GET['page'] =1 ;
+        
+    }
+
     $db = new db();
     $company_list = $db->getCompanies(
         count($_GET),
@@ -7,7 +13,10 @@
         $_GET['order'],
         $_GET['type'],
         $_GET['startrange'],
-        $_GET['endrange']
+        $_GET['endrange'],
+        ($_GET['page'] -1) * $maxCards,
+        (($_GET['page'] -1) * $maxCards) + $maxCards
+
 
     );
 ?>
