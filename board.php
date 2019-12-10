@@ -179,7 +179,7 @@
                             <input id="inputAddress" class="form-control" type="text" placeholder="Company Address" name="address">
                         </div>
                         <div class="form-group">
-                            <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone" name="tel" >
+                            <input id="inputTel" class="form-control" type="number" placeholder="Company Telephone" name="tel">
                         </div>
                         <div class="form-group">
                             <input id="inputEmail" class="form-control" type="email" placeholder="Company Email" name="email">
