@@ -15,23 +15,36 @@ function initialiseCode(){
     function getCompanyInfo(current_id){
 
         // Declaring variables that hold the elements
+        
         modal_company_name_element = document.getElementById("modal-company-name");
         modal_company_desc_element = document.getElementById("modal-company-desc");
+        modal_company_address_element = document.getElementById("modal-company-address");
+        modal_company_tel_element = document.getElementById("modal-company-tel");
+        modal_company_email_element = document.getElementById("modal-company-email");
 
         // Convert string id to number for iterative purposes
         current_id = current_id.replace("card-comp", '');
 
         for (company in company_list){
             if (current_id === company_list[company]['id']){
+                
                 // Declaring variables that hold company information
                 modal_company_name = company_list[company]['name'];
                 modal_company_desc = company_list[company]['description'];
+                modal_company_address = company_list[company]['address'];
+                modal_company_tel = company_list[company]['tel'];
+                modal_company_email = company_list[company]['email'];
+                
+                
             }
         } 
 
         // Changing the contents of the element within the modal
         modal_company_name_element.innerHTML = modal_company_name;
         modal_company_desc_element.innerHTML = modal_company_desc;
+        modal_company_address_element.innerHTML = modal_company_address;
+        modal_company_tel_element.innerHTML = modal_company_tel;
+        modal_company_email_element.innerHTML = modal_company_email;
     }
 
     // When the user clicks on <span> (x), close the modal

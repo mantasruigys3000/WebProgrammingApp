@@ -59,7 +59,7 @@
             <form style="margin: auto; width: 80%;" action="board.php" method="GET">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <button class="button input-group-text outline-primary " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > > </button>
+                        <button class="button input-group-text outline-primary " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > Adv. Search </button>
                     </div>
                     <input type="text" class="form-control text-center" placeholder="Try searching for a company!" name="search">
                     <div class="input-group-append">
@@ -72,7 +72,8 @@
                         Advanced Search Settings
                     </div>
                     <div class="card-body p-3">
-                        <div class="input-group" style="width: 300px;" >
+                        <div>SORT BY</div>
+                        <div class="input-group" style="width: 100%;" >
                             <select class="custom-select" id="inputSelectSearchSort" name="order">
                                 <option selected>A-Z</option>
                                 <option value="Z-A">Z-A</option>
@@ -80,19 +81,14 @@
                                 <option value="Oldest">Oldest</option>
                             </select>
                         </div>
-                        <div class="input-group mt-3" style="width: 300px;" >
+                        <div style="padding-top: 1.1%;">CATEGORY</div>
+                        <div class="input-group" style="width: 100%;" >
                             <select class="custom-select" id="inputSelectSearchFilter" name="type">
-                                <option selected>Software Engineering</option>
+                                <option id="se" selected>Software Engineering</option>
                                 <option value="Computing">Computing</option>
                                 <option value="Data">Data</option>
                                 <option value="All">All</option>
                             </select>
-                        </div>
-                        <div class="input-group mt-3">
-                                <label for="inputStartDate">Start Date</label>
-                                <input type="date" id="inputStartDate" name="startrange">
-                                <label for="inputEndDate">End Date</label>
-                                <input type="date" id="inputEndDate" name="endrange">
                         </div>
                     </div>
                 </div>
@@ -116,20 +112,41 @@
         <div id="edit-modal" class="modal-custom">
         <!-- Modal content -->
             <div class="card" style="width: 75%; height: 75%; margin: 7% auto;">
-                <div class="card-header">
+                <div class="card-header ">
                     Company Information
                     <span class="close">&times;</span>
                 </div>
-                <div class="card-body" style="margin: 50px auto">
-                    <h5 id="modal-company-name" class="card-title">Intel</h5>
-                    <p id="modal-company-desc" class="card-text">Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California.</p>
-                    <a id="modal-company-email" href="#" class="btn btn-primary">Email Link</a>
+                <div class="card-body " style="margin: auto">
+                    <div class="row">
+                        <div class="col-md-4" style="margin-left: 2.5%;">
+                            <h5 class="text-uppercase font-weight-bold text-center border-bottom" style="width: 100%; margin:auto; font-size: 25px; margin-top:35%;">CONTACT INFORMATION</h5>
+                            <h5 class="text-uppercase font-weight-bold text-center" style="width: 90%; margin:auto; margin-top: 8%;">company address</h5>
+                            <p id="modal-company-address" class="text-center border-bottom" style="width: 90%; margin:auto;">yeah</p>
+                            <h5 class="text-uppercase font-weight-bold text-center" style="width: 90%; margin:auto; margin-top: 10%;">company telephone</h5>
+                            <p id="modal-company-tel" class="text-center border-bottom" style="width: 90%; margin:auto;">yeah</p>
+                            <h5 class="text-uppercase font-weight-bold text-center" style="width: 90%; margin:auto; margin-top: 10%;">company email</h5>
+                            <p id="modal-company-email" class="text-center border-bottom" style="width: 90%; margin:auto;">yeah</p>
+                        </div>
+                        <div id="black-bar" style="height: 70%; width: 1px; background-color:#e6e6e6; margin-top: 2%; margin-left: 5%;"></div>
+                        <div class="col-md-7">
+                    <h5 id="modal-company-name" class="card-title text-uppercase font-weight-bold text-center border-bottom" style="width: 80%; margin:auto;">Intel</h5>
+                    <p id="modal-company-desc" class="card-text border-bottom p-4">Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer bg-primary border-primary">
-                    <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
-                    <form action="" method="POST" id="edit-button-form">
-                        <button type="button bg-primary" class="btn btn-primary" id="edit-button">Edit Infomation</button>
-                    </form>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button bg-primary" class="btn btn-primary text-uppercase font-weight-bold" id="close">Close</button>
+                        </div>
+                        <div class="col ml-auto">
+                            <div class="float-right">
+                            <form action="" method="POST" id="edit-button-form">
+                                <button type="button bg-primary" class="btn btn-primary text-uppercase font-weight-bold float-right"id="edit-button">Edit Infomation</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -162,7 +179,7 @@
                             <input id="inputAddress" class="form-control" type="text" placeholder="Company Address" name="address">
                         </div>
                         <div class="form-group">
-                            <input id="inputTel" class="form-control" type="tex" placeholder="Company Telephone - 11 digits long" name="tel"
+                            <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone - 11 digits long" name="tel"
                             pattern="[0-9]{3}[0-9]{4}[0-9]{4}" required>
                         </div>
                         <div class="form-group">
@@ -170,7 +187,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Description</label>
-                            <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="200" name="description"></textarea>
+                            <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="500" name="description"></textarea>
                         </div>
                         <button type="submit" name = "submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -219,7 +236,7 @@
         <!-- Footer -->
             <div class="card-footer bg-primary border-primary fixed-bottom" style="margin-top:10px;">
                 <form method="post" action="logout.php">
-                <button type="submit" class="btn btn-primary">Log out</button>
+                <button type="submit" class="btn btn-primary text-uppercase font-weight-bold">Log out</button>
                 </form>
             </div>
         </div>

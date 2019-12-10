@@ -202,6 +202,7 @@ h1{
 
 #header-font{
     color: white;
+    font-size: 80px !important;
 }
 
 #headish{
@@ -230,3 +231,27 @@ body{
   color: red;
 }
 
+#se 
+{
+    text-align: center;
+}
+
+#modal-company-name
+{
+    font-size: 50px !important;
+    margin-top: 7.5% !important;
+}
+
+#modal-company-desc
+{
+    text-align: justify !important;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    height: 350px !important;
+    overflow: scroll;
+    text-align: center;
+}
