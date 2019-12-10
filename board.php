@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    $maxCards = 11;
+
     require './db.php';
     $db = new db();
     $company_list = $db->getCompanies(
@@ -9,7 +11,10 @@
         $_GET['order'],
         $_GET['type'],
         $_GET['startrange'],
-        $_GET['endrange']
+        $_GET['endrange'],
+        ($_GET['page'] -1) * $maxCards,
+        (($_GET['page'] -1) * $maxCards) + $maxCards
+
 
     );
 

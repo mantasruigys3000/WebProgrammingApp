@@ -60,11 +60,19 @@ private $connection; //Connection attribute to be used by methods
         }
     }
     //Returns every company in 
-    public function getCompanies($arraySet,$search,$order,$type,$startrange,$endrange){
+    public function getCompanies($arraySet,$search,$order,$type,$startrange,$endrange,$startLimit= NULL,$endLimit= NULL){
         
         //if search was not used get all companies
+        if($startLimit == NULL){
+            $startLimit = 0;
+        }
+        if($endLimit == NULL){
+            $endLimit = 11;
+
+        }
+
         if($arraySet == 0){
-            $sql = "SELECT * FROM tbl_company";
+            $sql = "SELECT * FROM tbl_company limit $startLimit,$endLimit";
         }else{
             //Getting which order the user has selected and formatting it for the query
             $orderBy;
@@ -81,6 +89,7 @@ private $connection; //Connection attribute to be used by methods
             if($endrange == ''){
                 $endrange = '2022-01-01 00:00:00';
             }
+            
 
             
 
@@ -89,12 +98,12 @@ private $connection; //Connection attribute to be used by methods
             where(company_name like '%$search%')
             AND (company_type like '%$type%')
             AND (company_last_update BETWEEN '$startrange' and '$endrange')
-            ORDER BY company_name $orderBy";
+            ORDER BY company_name $orderBy  limit $startLimit, $endLimit";
 
 
         }
 
-
+        var_dump($sql);
         $result =  mysqli_query($this->connection,$sql);
 
         $companies = [];
@@ -142,7 +151,7 @@ private $connection; //Connection attribute to be used by methods
     //Inserts a company with given information
     public function insertCompany($name,$type,$tel,$date,$description,$email,$address){
         $sql = "INSERT into tbl_company (company_name,company_type,company_tel,company_date_added,company_last_update,company_description,company_email,company_address)
-        VALUES($name,$type,$tel,$date,$date,$description,$email,$address)";
+        VALUES($name,$type,$tel,$date,$date,'$description',$email,$address)";
 
         mysqli_query($this->connection,$sql);
         return 1;
