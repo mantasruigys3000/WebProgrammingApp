@@ -89,6 +89,9 @@ private $connection; //Connection attribute to be used by methods
             if($endrange == ''){
                 $endrange = '2022-01-01 00:00:00';
             }
+            if($type = "All"){
+                $type = "";
+            }
             
 
             
