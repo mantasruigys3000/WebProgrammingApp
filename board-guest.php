@@ -105,7 +105,7 @@
                     Company Information
                     <span class="close">&times;</span>
                 </div>
-                <div class="card-body " style="margin: auto">
+                <div class="card-body " style="margin: auto; width: 100%;">
                     <div class="row">
                         <div class="col-md-4" style="margin-left: 2.5%;">
                             <h5 class="text-uppercase font-weight-bold text-center border-bottom" style="width: 100%; margin:auto; font-size: 25px; margin-top:35%;">CONTACT INFORMATION</h5>

@@ -116,7 +116,7 @@
                     Company Information
                     <span class="close">&times;</span>
                 </div>
-                <div class="card-body " style="margin: auto">
+                <div class="card-body " style="margin: auto; width: 100%;">
                     <div class="row">
                         <div class="col-md-4" style="margin-left: 2.5%;">
                             <h5 class="text-uppercase font-weight-bold text-center border-bottom" style="width: 100%; margin:auto; font-size: 25px; margin-top:35%;">CONTACT INFORMATION</h5>
@@ -127,10 +127,10 @@
                             <h5 class="text-uppercase font-weight-bold text-center" style="width: 90%; margin:auto; margin-top: 10%;">company email</h5>
                             <p id="modal-company-email" class="text-center border-bottom" style="width: 90%; margin:auto;">yeah</p>
                         </div>
-                        <div id="black-bar" style=" width: 1px; background-color:#e6e6e6; margin-top: 3%; margin-left: 5%;"></div>
-                        <div class="col-md-7">
-                    <h5 id="modal-company-name" class="card-title text-uppercase font-weight-bold text-center border-bottom" style="width: 80%; margin:auto;">Intel</h5>
-                    <p id="modal-company-desc" class="card-text border-bottom p-4">Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California.</p>
+                        <div id="black-bar" style="height: 350px; width: 1px; background-color:#e6e6e6; margin-top: 9%; margin-left: 5%;"></div>
+                        <div class="col-md-7 w-100">
+                            <h5 id="modal-company-name" class="card-title text-uppercase font-weight-bold text-center border-bottom" style="width: 80%; margin:auto;">Intel</h5>
+                            <p id="modal-company-desc" class="card-text border-bottom p-4 " >Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California.</p>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                             <input id="inputAddress" class="form-control" type="text" placeholder="Company Address" name="address">
                         </div>
                         <div class="form-group">
-                            <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone" name="tel" value='%s'>
+                            <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone" name="tel" >
                         </div>
                         <div class="form-group">
                             <input id="inputEmail" class="form-control" type="email" placeholder="Company Email" name="email">
