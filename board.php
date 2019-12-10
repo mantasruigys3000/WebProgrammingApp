@@ -179,8 +179,7 @@
                             <input id="inputAddress" class="form-control" type="text" placeholder="Company Address" name="address">
                         </div>
                         <div class="form-group">
-                            <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone - 11 digits long" name="tel"
-                            pattern="[0-9]{3}[0-9]{4}[0-9]{4}" required>
+                            <input id="inputTel" class="form-control" type="text" placeholder="Company Telephone" name="tel" value='%s'>
                         </div>
                         <div class="form-group">
                             <input id="inputEmail" class="form-control" type="email" placeholder="Company Email" name="email">
