@@ -97,7 +97,7 @@ $found = True;
                             </div>
                             <div class='form-group'>
                                 <label for='inputDescription'>Description</label>
-                                <textarea class='form-control' rows='5' id='comment' style='resize: none;' maxlength='200' name='description'>%s</textarea>
+                                <textarea class='form-control' rows='5' id='comment' style='resize: none;' maxlength='1000' name='description'>%s</textarea>
                             </div>
                             <div class='row' style='text-decoration: none important!;'>
                                 <div class='col'>

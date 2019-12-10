@@ -127,7 +127,7 @@
                             <h5 class="text-uppercase font-weight-bold text-center" style="width: 90%; margin:auto; margin-top: 10%;">company email</h5>
                             <p id="modal-company-email" class="text-center border-bottom" style="width: 90%; margin:auto;">yeah</p>
                         </div>
-                        <div id="black-bar" style="height: 500px; width: 1px; background-color:#e6e6e6; margin-top: 3%; margin-left: 5%;"></div>
+                        <div id="black-bar" style=" width: 1px; background-color:#e6e6e6; margin-top: 3%; margin-left: 5%;"></div>
                         <div class="col-md-7">
                     <h5 id="modal-company-name" class="card-title text-uppercase font-weight-bold text-center border-bottom" style="width: 80%; margin:auto;">Intel</h5>
                     <p id="modal-company-desc" class="card-text border-bottom p-4">Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California.</p>
@@ -187,7 +187,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Description</label>
-                            <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="500" name="description"></textarea>
+                            <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="1000" name="description"></textarea>
                         </div>
                         <button type="submit" name = "submit" class="btn btn-primary">Submit</button>
                     </form>
