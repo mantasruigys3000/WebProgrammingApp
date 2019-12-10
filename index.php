@@ -1,75 +1,81 @@
 <?php
-session_start();
-
-if ( isset( $_SESSION['username'] )) {
-    // Redirect them to the login page
-    header("Location: ./board.php");
-}
-
+    session_start();
 ?>
 
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Landing Page</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="indexStyle.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-    <script src="script.js"></script>
-
-    <div class="boxwrapper">
-
-    <div class="card" style="width: auto;">
-    <div class="card-header"><a href="" class="card-link">< Back</a></div>
-  <div class="card-body">
-    <h5 class="card-title">Login as Admin</h5>
-    <form method="POST" class="loginform" action="./php_events/event_login.php">
-            <div class="form-group">
-                <label for="inputUsername">Username</label>
-                <input type="text" name="username" class="form-control" id="inputUsername" placeholder="Username">
-            </div>
-            <div class="form-group">
-                <label for="inputPassword">Password</label>
-                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
-            </div>
-            <a href="forgot.php" class="card-link">Forgot your password?</a></br>
-            <button type="submit" class="btn btn-primary mt-2">Log In</button>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div id="errorContainer" class="text-center">
             <?php
-                        if(isset($_SESSION["error"])){
-                            $error = $_SESSION["error"];
-                            echo "<div class='alert alert-danger' role='alert'>$error</div>";
-                        }
+                if(isset($_SESSION["error"])){
+                    $error = $_SESSION["error"];
+                    echo "<div class='alert alert-danger' role='alert'>$error</div>";
+                    unset($_SESSION['error']);
+                }
             ?>
-        </form>
-        <form class="" action="board-guest.php" method="post">
-          <button type="submit" class="btn btn-primary mt-2">Continue as guest</button>
-        </form>
-  </div>
-</div>
+            </div>
+            <button class="btn bg-white btn-outline-primary text-uppercase font-weight-bold w-100 collapsible" type="button">LOG IN AS ADMIN</button>
+            <div class="content rounded " style="width: 99.5%; margin: auto; background-color: white;">
+                <form method="POST" class="loginform" action="./php_events/event_login.php">
+                        <div class="form-group" style="padding-top: 20px; " >
+                            <input type="text" name="username" class="form-control text-center" id="inputUsername" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control text-center" id="inputPassword" style="" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3 text-uppercase font-weight-bold text-center" style="width: 100%;" >Log In</button>
+                </form>
 
-            <!--
-            <form method="POST" class="loginform" action="AuthUser.php">
-                <h1>Username</h1>
-                <input name="username" class="username-input" type="text"></br>
-                <h1>Password</h1>
-                <input name="password" class="password-input" type="password"></br>
-                <a href="forgot.php" target="">Forgot your password?</a></br>
-
-                <button class="login-button" type="submit">Log In</button>
-            </form>
-            -->
+            </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
     </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form class="" action="board-guest.php" method="post">
+            <button type="submit" class="btn bg-white btn-outline-primary text-uppercase font-weight-bold w-100" id="guestbtn" type="button">CONTINUE AS GUEST</button>
+        </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
 
+    </div>
+    <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function expandContainer() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+        content.style.maxHeight = null;
+        } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        } 
+    });
+    }
+    </script>
 
 </body>
 </html>
 
-<?php
-    unset($_SESSION["error"]);
-?>

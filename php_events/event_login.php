@@ -14,7 +14,7 @@
         $_SESSION['username'] = $enteredUsername;
         header("location: ../board.php");
     }else { // Login failed
-        $_SESSION['error'] = "Login failed.";
+        $_SESSION['error'] = "Login failed. Try Again.";
         header("location: ../index.php");
     }
 
