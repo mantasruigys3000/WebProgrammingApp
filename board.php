@@ -168,8 +168,7 @@
                             <label class="input-group-text" for="inputSelectType">Type</label>
                         </div>
                         <select class="custom-select" name="type" id="inputSelectType" require>
-                            <option selected>Choose...</option>
-                            <option value="Software Engineering">Software Engineering</option>
+                            <option selected="Software Engineering">Software Engineering</option>
                             <option value="Computing">Computing</option>
                             <option value="Data">Data</option>
                         </select>

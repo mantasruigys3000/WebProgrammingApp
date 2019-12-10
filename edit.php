@@ -89,7 +89,7 @@ $found = True;
                                 <input value='%s' id='inputAddress' class='form-control' type='text' placeholder='Company Address' name='address'>
                             </div>
                             <div class='form-group'>
-                                <input id='inputTel' class='form-control' type='text' placeholder='Company Telephone' name='tel' value='%s'>
+                                <input id='inputTel' class='form-control' type='number' placeholder='Company Telephone' name='tel' value='%s'>
                             </div>
                             <div class='form-group'>
                                 <input value='%s' id='inputEmail' class='form-control' type='email' placeholder='Company Email' name='email'>
