@@ -7,9 +7,12 @@
 
     $maxCards = 11;
 
+    
+
 
     require './db.php';
     $db = new db();
+
     $company_list = $db->getCompanies(
         count($_GET),
         $_GET['search'],

@@ -168,6 +168,16 @@ private $connection; //Connection attribute to be used by methods
         return 1;
 
     }
+    public function getCompanyCount(){
+        $sql = "SELECT count(company_id) from tbl_company";
+        $result =  mysqli_query($this->connection,$sql);
+
+        $count = mysqli_fetch_row($result)[0];
+        return $count;
+
+
+        
+    }
     
 }
 
