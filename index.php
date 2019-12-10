@@ -15,14 +15,14 @@ if ( isset( $_SESSION['username'] )) {
     <title>Landing Page</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <script src="script.js"></script>
-    
+
     <div class="boxwrapper">
 
     <div class="card" style="width: auto;">
@@ -47,9 +47,12 @@ if ( isset( $_SESSION['username'] )) {
                         }
             ?>
         </form>
+        <form class="" action="board-guest.php" method="post">
+          <button type="submit" class="btn btn-primary mt-2">Continue as guest</button>
+        </form>
   </div>
 </div>
-        
+
             <!--
             <form method="POST" class="loginform" action="AuthUser.php">
                 <h1>Username</h1>
@@ -57,7 +60,7 @@ if ( isset( $_SESSION['username'] )) {
                 <h1>Password</h1>
                 <input name="password" class="password-input" type="password"></br>
                 <a href="forgot.php" target="">Forgot your password?</a></br>
-                    
+
                 <button class="login-button" type="submit">Log In</button>
             </form>
             -->
