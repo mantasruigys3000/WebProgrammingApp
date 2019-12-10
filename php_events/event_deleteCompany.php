@@ -1,16 +1,17 @@
 <?php
 
+// Create the database object
 require '../db.php';
 $db = new db();
 
-$id = str_replace("card-comp","",$_GET['id']);
 
-$sql = $db->deleteCompany($id);
-
-
+$id = str_replace("card-comp","",$_GET['id']); // get id of company
+$sql = $db->deleteCompany($id); // delete company
 
 
 
+
+// check if method was successful
 if ($sql){
     header("Location: ../board.php");
     $_SESSION['message'] = "Record deleted successfully.";

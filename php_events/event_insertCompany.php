@@ -1,7 +1,8 @@
 <?php
+    //Create database object
     require '../db.php';
     $db = new db();
-
+    // Get all input from post
     $name = $_POST['name'];
     $tel = $_POST['tel'];
     $description = $_POST['description'];
@@ -9,6 +10,7 @@
     $address = $_POST['address'];
     $type = $_POST['type'];
 
+    // Get date and wrap input
     $date = date('Y-m-d h:m:s', time());
     $date = "\"" . $date .  "\"";
     $name = "\"" . $name .  "\"";
@@ -17,10 +19,7 @@
     $address = "\"" . $address .  "\"";
     $type = "\"" . $type .  "\"";
 
-
-    var_dump($date);
-
-
+    //insert the company using database method
     $result = $db->insertCompany($name,$type,$tel,$date,$description,$email,$address);
 
     
@@ -40,10 +39,5 @@
          session_start();
          $_SESSION['message'] =  "Problem adding this record.";
     }
-
-
-    mysqli_query($db->connection,$sql);
-    echo mysqli_error($db->connection);
-
 
 ?>
