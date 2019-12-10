@@ -103,7 +103,7 @@ private $connection; //Connection attribute to be used by methods
 
         }
 
-        var_dump($sql);
+        
         $result =  mysqli_query($this->connection,$sql);
 
         $companies = [];
