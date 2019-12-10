@@ -5,7 +5,7 @@ $db = new db();
 
 $id = str_replace("card-comp","",$_GET['id']);
 
-$db->deleteCompany($id);
+$sql = $db->deleteCompany($id);
 
 
 

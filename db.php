@@ -145,6 +145,24 @@ public $connection;
 
         $sql = "DELETE FROM tbl_company WHERE company_id = $companyID";
         mysqli_query($this->connection,$sql);
+        return 1;
+    }
+
+    public function insertCompany($name,$type,$tel,$date,$description,$email,$address){
+        $sql = "INSERT into tbl_company (company_name,company_type,company_tel,company_date_added,company_last_update,company_description,company_email,company_address)
+        VALUES($name,$type,$tel,$date,$date,$description,$email,$address)";
+
+        mysqli_query($this->connection,$sql);
+    }
+
+    public function updateCompany ($id,$name,$type,$tel,$date,$description,$email,$address) {
+        $sql = "UPDATE tbl_company SET company_name = $name, company_tel = $tel ,company_description = $description,company_email = $email,
+        company_address = $address,  company_type = $type 
+        where company_id = $id";
+        mysqli_query($this->connection,$sql);
+        return $sql;
+
+        return 1;
 
     }
     
