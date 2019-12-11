@@ -102,11 +102,6 @@ private $connection; //Connection attribute to be used by methods
             AND (company_last_update BETWEEN '$startrange' and '$endrange')
             ORDER BY company_name $orderBy  limit $startLimit, $endLimit";
 
-            /* This doesnt work at the moment but it might in the future
-            if($type = "All"){
-                $type = "";
-            }
-            */
 
         }
 
