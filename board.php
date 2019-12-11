@@ -191,7 +191,7 @@
             <div id="add-modal" class="modal-custom">
             <!-- Add Company Modal -->
                 <div class="card" style="width: 75%; height: auto; margin: 7% auto;">
-                    <div class="card-header">
+                    <div class="card-header ">
                         Add new company
                         <span class="close">&times;</span>
                     </div>
@@ -260,8 +260,8 @@
                     <div class= 'col-auto mb-3'>
                             <div class= 'card border-primary' style='width: 18rem; min-height:14.5rem;' id='add-comp'>
                                 <div class= 'card-body'>
-                                    <h5 class='card-title text-primary text-center '> Add New Company</h5>
-                                    <img style='  display: block; margin-left: auto; margin-right: auto; width: 40%; margin-top: 32.5px;'  width='75px' src='assets/add_icon.png'>
+                                    <h5 class='card-title text-primary text-center text-uppercase font-weight-bold mt-3'> Add New Company</h5>
+                                    <img style='  display: block; margin-left: auto; margin-right: auto; width: 40%; margin-top: 22.5px;'  width='75px' src='assets/add_icon.png'>
                                 </div>
                             </div>
                     </div>
