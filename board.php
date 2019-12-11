@@ -95,11 +95,11 @@
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <!-- Its crucial that the type is button so the page doesnt refresh on click -->
-                                <button class="button input-group-text outline-primary " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > Adv. Search </button>
+                                <button class="button input-group-text outline-primary text-uppercase font-weight-bold " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > Adv. Search </button>
                             </div>
                             <input type="text" class="form-control text-center" placeholder="Try searching for a company!" name="search">
                             <div class="input-group-append">
-                                <button class="input-group-text outline-primary" type="text" >Search</button>
+                                <button class="input-group-text outline-primary text-uppercase font-weight-bold" type="text" >Search</button>
                             </div>
                         </div>
                         <div class="card mt-3 collapse" id="collapse1" style="display: none">
@@ -224,11 +224,11 @@
                                 <label for="inputDescription">Description</label>
                                 <textarea class="form-control" rows="5" id="comment" style="resize: none;" maxlength="1000" name="description"></textarea>
                             </div>
-                            <button type="submit" name = "submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name = "submit" class="btn btn-primary text-uppercase font-weight-bold">Submit</button>
                         </form>
                     </div>
                     <div class="card-footer bg-primary border-primary">
-                        <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
+                        <button type="button bg-primary" class="btn btn-primary text-uppercase font-weight-bold" id="close">Close</button>
                     </div>
                 </div>
             </div>

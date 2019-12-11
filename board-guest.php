@@ -89,11 +89,11 @@
                 <form style="margin: auto; width: 80%;" action="board-guest.php" method="GET">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="button input-group-text outline-primary " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > Adv. Search </button>
+                            <button class="button input-group-text outline-primary text-uppercase font-weight-bold" type="button" id="basic-addon3" onclick="toggleAdvSearch()" > Adv. Search </button>
                         </div>
                         <input type="text" class="form-control text-center" placeholder="Try searching for a company!" name="search">
                         <div class="input-group-append">
-                            <button class="input-group-text outline-primary" type="text" >Search</button>
+                            <button class="input-group-text outline-primary text-uppercase font-weight-bold" type="text" >Search</button>
                         </div>
                     </div>
                     <div class="card mt-3 collapse" id="collapse1" style="display: none">
