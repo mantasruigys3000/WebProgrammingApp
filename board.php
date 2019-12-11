@@ -222,21 +222,22 @@
         </div>
 
         
-        <div class="container-fluid mx-5">
-        <!-- Pagination -->
-        <div class= "row justify-content-center" id="display-settings">
-                <div class='col m-auto'>
-                        <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <?php
-
-                            for ($x = 1; $x <= $page_amount; $x++) {
-                                $page_button = sprintf("<li class='page-item'><a class='page-link' href='%spage=%s'>%s</a></li>", $url, $x, $x);
-                                echo($page_button);
-                            }
-                            
-                            ?>
-                        </ul>
+        <div class="container-fluid " >
+        <!-- Pagination Top-->
+        <div class= "row " id="display-settings" >
+                <div class='col' style="text-align: center;" >
+                        <nav aria-label="Page navigation"style="display: inline-block;"  >
+                            <ul class="pagination" >
+                                <?php
+                                for ($x = 1; $x <= $page_amount; $x++) {
+                                    $page_button = sprintf("
+                                    <li class='page-item'>
+                                        <a class='page-link' href='%spage=%s'>%s</a>
+                                    </li>", $url, $x, $x);
+                                    echo($page_button);
+                                }
+                                ?>
+                            </ul>
                         </nav>
                 </div>
             </div>
@@ -274,6 +275,27 @@
                         echo($element);
                     }
                 ?>
+        </div>
+
+        <div class="container-fluid mt-3" >
+        <!-- Pagination Bottom-->
+        <div class= "row " id="display-settings" >
+                <div class='col' style="text-align: center;" >
+                        <nav aria-label="Page navigation"style="display: inline-block;"  >
+                            <ul class="pagination" >
+                                <?php
+                                for ($x = 1; $x <= $page_amount; $x++) {
+                                    $page_button = sprintf("
+                                    <li class='page-item'>
+                                        <a class='page-link' href='%spage=%s'>%s</a>
+                                    </li>", $url, $x, $x);
+                                    echo($page_button);
+                                }
+                                ?>
+                            </ul>
+                        </nav>
+                </div>
+            </div>
         </div>
 
         <div class="footer" style="margin-top:80px" >

@@ -1,11 +1,15 @@
 <?php
-    require './db.php';
-    $maxCards = 12;
+    session_start();
+
+    $url = "$_SERVER[REQUEST_URI]" . "?";
+
     if(!isset($_GET['page'])){
         $_GET['page'] =1 ;
-        
     }
 
+    $maxCards = 12;
+
+    require './db.php';
     $db = new db();
     $company_list = $db->getCompanies(
         count($_GET),
@@ -15,10 +19,26 @@
         $_GET['startrange'],
         $_GET['endrange'],
         ($_GET['page'] -1) * $maxCards,
-        (($_GET['page'] -1) * $maxCards) + $maxCards
-
-
+        $maxCards
     );
+
+    $company_count = $db->getCompanyCount();
+    $page_amount = ceil($company_count/$maxCards);
+
+    $get_array = array($_GET);
+
+    $url = "board-guest.php?";
+    $parameters;
+
+    foreach ($get_array as $get_var){
+        unset($get_var['page']);
+        foreach ($get_var as $key => $value) {
+            $new_par = $key . "=" . $value . "&";
+            $parameters .= $new_par;
+        }
+    }
+
+    $url .= str_replace(" ", "+", $parameters);
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +74,7 @@
         <form method="POST" class="loginform" action="board.php">
             <button class="btn text-uppercase font-weight-bold" id="header-font">Dashboard</button>
         </form>
-            <form style="margin: auto; width: 80%;" action="board.php" method="GET">
+            <form style="margin: auto; width: 80%;" action="board-guest.php" method="GET">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="button input-group-text outline-primary " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > Adv. Search </button>
@@ -147,6 +167,27 @@
                 </div>
             </div>
         </div>
+        
+        <div class="container-fluid " >
+        <!-- Pagination Top-->
+        <div class= "row " id="display-settings" >
+                <div class='col' style="text-align: center;" >
+                        <nav aria-label="Page navigation"style="display: inline-block;"  >
+                            <ul class="pagination" >
+                                <?php
+                                for ($x = 1; $x <= $page_amount; $x++) {
+                                    $page_button = sprintf("
+                                    <li class='page-item'>
+                                        <a class='page-link' href='%spage=%s'>%s</a>
+                                    </li>", $url, $x, $x);
+                                    echo($page_button);
+                                }
+                                ?>
+                            </ul>
+                        </nav>
+                </div>
+            </div>
+        </div>
 
         <div class= "container-fluid mt-4" >
         <!-- Card Generator + Add Card -->
@@ -172,6 +213,27 @@
                         echo($element);
                     }
                 ?>
+        </div>
+
+        <div class="container-fluid mt-3" >
+        <!-- Pagination Bottom-->
+        <div class= "row " id="display-settings" >
+                <div class='col' style="text-align: center;" >
+                        <nav aria-label="Page navigation"style="display: inline-block;"  >
+                            <ul class="pagination" >
+                                <?php
+                                for ($x = 1; $x <= $page_amount; $x++) {
+                                    $page_button = sprintf("
+                                    <li class='page-item'>
+                                        <a class='page-link' href='%spage=%s'>%s</a>
+                                    </li>", $url, $x, $x);
+                                    echo($page_button);
+                                }
+                                ?>
+                            </ul>
+                        </nav>
+                </div>
+            </div>
         </div>
 
         <div class="footer" style="margin-top:80px" >
