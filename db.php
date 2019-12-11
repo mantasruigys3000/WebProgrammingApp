@@ -1,8 +1,6 @@
 <?php
-
 // Database wrapper class that handles queries on method calls
 class db{
-
 private $connection; //Connection attribute to be used by methods
 
     //Connects to the database on creation.
@@ -28,15 +26,9 @@ private $connection; //Connection attribute to be used by methods
             }else{
                 //Connection success
                 $this->connection = $conn;
-
             }
         }
-
-
-
     }
-
-
 
     public function loginUser($username,$password){
         //Get the user by username
@@ -65,7 +57,6 @@ private $connection; //Connection attribute to be used by methods
     }
     //Returns every company in
     public function getCompanies($arraySet,$search,$order,$type="",$startrange,$endrange,$startLimit= NULL,$endLimit= NULL){
-
         //if search was not used get all companies
         if($startLimit == NULL){
             $startLimit = 0;
@@ -85,6 +76,7 @@ private $connection; //Connection attribute to be used by methods
             }else if($order == 'Z-A'){
                 $orderBy = 'DESC';
             }
+
             // Setting a min and max date in the case of no search option selected
             if($startrange == ''){
                 $startrange = '2018-01-01 00:00:00';
@@ -94,40 +86,19 @@ private $connection; //Connection attribute to be used by methods
                 $endrange = '2022-01-01 00:00:00';
             }
 
-
-
-
             //Search query with parameters
             $sql = "SELECT * FROM tbl_company
             where(company_name like '%$search%')
             AND (company_type like '%$type%')
             AND (company_last_update BETWEEN '$startrange' and '$endrange')
             ORDER BY company_name $orderBy  limit $startLimit, $endLimit";
-
-           var_dump($sql);
-
-
-
-
-
-
         }
-
 
         $result =  mysqli_query($this->connection,$sql);
-        /*
-        if(mysqli_error($this->connection) != NULL) {
-            echo mysqli_error($this->connection);
-        }
-        */
-
-
         $companies = [];
-
 
         //Creating array object
         while($row = mysqli_fetch_row($result)){
-
             //Get fields
             $id = strval($row[0]);
             $name = strval($row[1]);
@@ -152,12 +123,10 @@ private $connection; //Connection attribute to be used by methods
             );
             //Pushing array object to companies variable
             array_push($companies,$comapanyArr);
-
         }
-
         return $companies;
-
     }
+
     // Deletes company by ID
     public function deleteCompany($companyID){
 
@@ -168,6 +137,7 @@ private $connection; //Connection attribute to be used by methods
         }
         return 1;
     }
+
     //Inserts a company with given information
     public function insertCompany($name,$type,$tel,$date,$description,$email,$address){
         $sql = "INSERT into tbl_company (company_name,company_type,company_tel,company_date_added,company_last_update,company_description,company_email,company_address)
@@ -180,6 +150,7 @@ private $connection; //Connection attribute to be used by methods
         return 1;
 
     }
+
     // Updates an existing company with given information
     public function updateCompany ($id,$name,$type,$tel,$date,$description,$email,$address) {
         $sql = "UPDATE tbl_company SET company_name = $name, company_tel = $tel ,company_description = $description,company_email = $email,
@@ -194,6 +165,7 @@ private $connection; //Connection attribute to be used by methods
         return 1;
 
     }
+
     public function getCompanyCount(){
         $sql = "SELECT count(company_id) from tbl_company";
         $result =  mysqli_query($this->connection,$sql);
@@ -204,12 +176,6 @@ private $connection; //Connection attribute to be used by methods
 
         $count = mysqli_fetch_row($result)[0];
         return $count;
-
-
-
     }
-
 }
-
-
 ?>
