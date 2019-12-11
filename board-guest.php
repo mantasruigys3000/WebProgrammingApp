@@ -11,6 +11,7 @@
 
     require './db.php';
     $db = new db();
+    //Get every company based on search query with limits for pagination
     $company_list = $db->getCompanies(
         count($_GET),
         $_GET['search'],
@@ -22,8 +23,20 @@
         $maxCards
     );
 
-    $company_count = $db->getCompanyCount();
-    $page_amount = ceil($company_count/$maxCards);
+    //Getting every company that is returned by the search query but without a limit
+    $company_count = $db->getCompanies(
+        count($_GET),
+        $_GET['search'],
+        $_GET['order'],
+        $_GET['type'],
+        $_GET['startrange'],
+        $_GET['endrange'],
+        0,
+        $db->getCompanyCount()
+    );
+
+    
+    $page_amount = ceil(Count($company_count)/$maxCards);
 
     $get_array = array($_GET);
 

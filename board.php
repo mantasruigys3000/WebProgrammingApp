@@ -11,6 +11,7 @@
 
     require './db.php';
     $db = new db();
+    //Get every company based on search query with limits for pagination
     $company_list = $db->getCompanies(
         count($_GET),
         $_GET['search'],
@@ -21,9 +22,21 @@
         ($_GET['page'] -1) * $maxCards,
         $maxCards
     );
+    //Getting every company that is returned by the search query but without a limit
 
-    $company_count = $db->getCompanyCount();
-    $page_amount = ceil($company_count/$maxCards);
+    $company_count = $db->getCompanies(
+        count($_GET),
+        $_GET['search'],
+        $_GET['order'],
+        $_GET['type'],
+        $_GET['startrange'],
+        $_GET['endrange'],
+        0,
+        $db->getCompanyCount()
+    );
+
+    
+    $page_amount = ceil(Count($company_count)/$maxCards);
 
     if ( !isset( $_SESSION['username'] ) ) {
         // Redirect them to the login page
@@ -284,6 +297,7 @@
                         <nav aria-label="Page navigation"style="display: inline-block;"  >
                             <ul class="pagination" >
                                 <?php
+
                                 for ($x = 1; $x <= $page_amount; $x++) {
                                     $page_button = sprintf("
                                     <li class='page-item'>
