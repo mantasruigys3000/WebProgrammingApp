@@ -83,7 +83,7 @@
     <body>
         <div class="header">
             <div class="jumbotron text-center p-3" id="headish">
-                <form method="POST" class="loginform" action="board.php">
+                <form method="POST" class="loginform" action="board-guest.php">
                     <button class="btn text-uppercase font-weight-bold" id="header-font">Dashboard</button>
                 </form>
                 <form style="margin: auto; width: 80%;" action="board-guest.php" method="GET">
