@@ -3,13 +3,18 @@ session_start();
 
 require './db.php';
 $db = new db();
+
+$maxCards = 11;
+
 $company_list = $db->getCompanies(
   count($_GET),
   $_GET['search'],
   $_GET['order'],
   $_GET['type'],
   $_GET['startrange'],
-  $_GET['endrange']
+  $_GET['endrange'],
+  0,
+  $db->getCompanyCount()
 );
 
 $company_id = str_replace("card-comp","",$_GET['id']);

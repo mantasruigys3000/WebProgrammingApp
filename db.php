@@ -44,6 +44,10 @@ private $connection; //Connection attribute to be used by methods
 
         $result = mysqli_query($this->connection,$sql);
 
+        if(mysqli_error($this->connection) != NULL) {
+            echo mysqli_error($this->connection);
+        }
+
         $userRow = mysqli_fetch_assoc($result);
         // Gets the users salt from the returned row
         $salt = $userRow['user_salt'];
@@ -89,12 +93,7 @@ private $connection; //Connection attribute to be used by methods
             if($endrange == ''){
                 $endrange = '2022-01-01 00:00:00';
             }
-            if($type = "All"){
-                $type = "";
-            }
-            
 
-            
 
             //Search query with parameters
             $sql = "SELECT * FROM tbl_company
@@ -103,13 +102,25 @@ private $connection; //Connection attribute to be used by methods
             AND (company_last_update BETWEEN '$startrange' and '$endrange')
             ORDER BY company_name $orderBy  limit $startLimit, $endLimit";
 
+            /* This doesnt work at the moment but it might in the future
+            if($type = "All"){
+                $type = "";
+            }
+            */
 
         }
 
         
         $result =  mysqli_query($this->connection,$sql);
+        /*
+        if(mysqli_error($this->connection) != NULL) {
+            echo mysqli_error($this->connection);
+        }
+        */
+
 
         $companies = [];
+        
 
         //Creating array object
         while($row = mysqli_fetch_row($result)){
@@ -149,6 +160,9 @@ private $connection; //Connection attribute to be used by methods
 
         $sql = "DELETE FROM tbl_company WHERE company_id = $companyID";
         mysqli_query($this->connection,$sql);
+        if(mysqli_error($this->connection) != NULL) {
+            echo mysqli_error($this->connection);
+        }
         return 1;
     }
     //Inserts a company with given information
@@ -157,6 +171,9 @@ private $connection; //Connection attribute to be used by methods
         VALUES($name,$type,$tel,$date,$date,$description,$email,$address)";
 
         mysqli_query($this->connection,$sql);
+        if(mysqli_error($this->connection) != NULL) {
+            echo mysqli_error($this->connection);
+        }
         return 1;
 
     }
@@ -166,6 +183,9 @@ private $connection; //Connection attribute to be used by methods
         company_address = $address,  company_type = $type 
         where company_id = $id";
         mysqli_query($this->connection,$sql);
+        if(mysqli_error($this->connection) != NULL) {
+            echo mysqli_error($this->connection);
+        }
         return $sql;
 
         return 1;
@@ -174,6 +194,10 @@ private $connection; //Connection attribute to be used by methods
     public function getCompanyCount(){
         $sql = "SELECT count(company_id) from tbl_company";
         $result =  mysqli_query($this->connection,$sql);
+
+        if(mysqli_error($this->connection) != NULL) {
+            echo mysqli_error($this->connection);
+        }
 
         $count = mysqli_fetch_row($result)[0];
         return $count;
