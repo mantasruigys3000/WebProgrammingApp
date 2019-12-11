@@ -24,6 +24,7 @@
         <div class="col-md-4">
             <div id="errorContainer" class="text-center">
             <?php
+            //creates session error and echos it if occured
                 if(isset($_SESSION["error"])){
                     $error = $_SESSION["error"];
                     echo "<div class='alert alert-danger' role='alert'>$error</div>";
@@ -71,11 +72,10 @@
         content.style.maxHeight = null;
         } else {
         content.style.maxHeight = content.scrollHeight + "px";
-        } 
+        }
     });
     }
     </script>
 
 </body>
 </html>
-

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // Database wrapper class that handles queries on method calls
 class db{
@@ -28,7 +28,7 @@ private $connection; //Connection attribute to be used by methods
             }else{
                 //Connection success
                 $this->connection = $conn;
-                
+
             }
         }
 
@@ -36,7 +36,7 @@ private $connection; //Connection attribute to be used by methods
 
     }
 
-    
+
 
     public function loginUser($username,$password){
         //Get the user by username
@@ -55,7 +55,7 @@ private $connection; //Connection attribute to be used by methods
         $fullPass = $password . $salt;
         //Hashing the entered password with the users real salt
         $hashedPass = hash('sha256',$fullPass);
-        
+
         //Comparing hashed entry to the users real password
         if ($hashedPass == $userRow['user_password']){
             return true;
@@ -63,9 +63,9 @@ private $connection; //Connection attribute to be used by methods
             return false;
         }
     }
-    //Returns every company in 
-    public function getCompanies($arraySet,$search,$order,$type,$startrange,$endrange,$startLimit= NULL,$endLimit= NULL){
-        
+    //Returns every company in
+    public function getCompanies($arraySet,$search,$order,$type="",$startrange,$endrange,$startLimit= NULL,$endLimit= NULL){
+
         //if search was not used get all companies
         if($startLimit == NULL){
             $startLimit = 0;
@@ -89,10 +89,12 @@ private $connection; //Connection attribute to be used by methods
             if($startrange == ''){
                 $startrange = '2018-01-01 00:00:00';
             }
-            
+
             if($endrange == ''){
                 $endrange = '2022-01-01 00:00:00';
             }
+
+
 
 
             //Search query with parameters
@@ -102,10 +104,16 @@ private $connection; //Connection attribute to be used by methods
             AND (company_last_update BETWEEN '$startrange' and '$endrange')
             ORDER BY company_name $orderBy  limit $startLimit, $endLimit";
 
+           var_dump($sql);
+
+
+
+
+
 
         }
 
-        
+
         $result =  mysqli_query($this->connection,$sql);
         /*
         if(mysqli_error($this->connection) != NULL) {
@@ -115,11 +123,11 @@ private $connection; //Connection attribute to be used by methods
 
 
         $companies = [];
-        
+
 
         //Creating array object
         while($row = mysqli_fetch_row($result)){
-            
+
             //Get fields
             $id = strval($row[0]);
             $name = strval($row[1]);
@@ -175,7 +183,7 @@ private $connection; //Connection attribute to be used by methods
     // Updates an existing company with given information
     public function updateCompany ($id,$name,$type,$tel,$date,$description,$email,$address) {
         $sql = "UPDATE tbl_company SET company_name = $name, company_tel = $tel ,company_description = $description,company_email = $email,
-        company_address = $address,  company_type = $type 
+        company_address = $address,  company_type = $type
         where company_id = $id";
         mysqli_query($this->connection,$sql);
         if(mysqli_error($this->connection) != NULL) {
@@ -198,9 +206,9 @@ private $connection; //Connection attribute to be used by methods
         return $count;
 
 
-        
+
     }
-    
+
 }
 
 
