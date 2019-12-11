@@ -1,18 +1,16 @@
 <?php
     session_start();
+
+    $url = "$_SERVER[REQUEST_URI]" . "?";
+
     if(!isset($_GET['page'])){
         $_GET['page'] =1 ;
-
     }
 
     $maxCards = 11;
 
-    
-
-
     require './db.php';
     $db = new db();
-
     $company_list = $db->getCompanies(
         count($_GET),
         $_GET['search'],
@@ -21,19 +19,31 @@
         $_GET['startrange'],
         $_GET['endrange'],
         ($_GET['page'] -1) * $maxCards,
-        (($_GET['page'] -1) * $maxCards) + $maxCards
-
-
+        $maxCards
     );
 
-
-    
+    $company_count = $db->getCompanyCount();
+    $page_amount = ceil($company_count/$maxCards);
 
     if ( !isset( $_SESSION['username'] ) ) {
         // Redirect them to the login page
         header("Location: index.php");
     }
 
+    $get_array = array($_GET);
+
+    $url = "board.php?";
+    $parameters;
+
+    foreach ($get_array as $get_var){
+        unset($get_var['page']);
+        foreach ($get_var as $key => $value) {
+            $new_par = $key . "=" . $value . "&";
+            $parameters .= $new_par;
+        }
+    }
+
+    $url .= str_replace(" ", "+", $parameters);
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +82,7 @@
             <form style="margin: auto; width: 80%;" action="board.php" method="GET">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
+                        <!-- Its crucial that the type is button so the page doesnt refresh on click -->
                         <button class="button input-group-text outline-primary " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > Adv. Search </button>
                     </div>
                     <input type="text" class="form-control text-center" placeholder="Try searching for a company!" name="search">
@@ -108,6 +119,7 @@
             </form>
     </div>
 
+    <!-- The toggle for Adv. Search -->
     <script>
         function toggleAdvSearch(){
             var x = document.getElementById("collapse1");
@@ -205,6 +217,27 @@
                 </div>
                 <div class="card-footer bg-primary border-primary">
                     <button type="button bg-primary" class="btn btn-primary" id="close">Close</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid mx-5">
+        <!-- Pagination -->
+        <div class= "row justify-content-center" id="display-settings">
+                <div class='col m-auto'>
+                        <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <?php
+
+                            for ($x = 1; $x <= $page_amount; $x++) {
+                                $page_button = sprintf("<li class='page-item'><a class='page-link' href='%spage=%s'>%s</a></li>", $url, $x, $x);
+                                echo($page_button);
+                            }
+                            
+                            ?>
+                        </ul>
+                        </nav>
                 </div>
             </div>
         </div>
