@@ -1,11 +1,15 @@
 <?php
-    require './db.php';
-    $maxCards = 12;
+    session_start();
+
+    $url = "$_SERVER[REQUEST_URI]" . "?";
+
     if(!isset($_GET['page'])){
         $_GET['page'] =1 ;
-        
     }
 
+    $maxCards = 12;
+
+    require './db.php';
     $db = new db();
     $company_list = $db->getCompanies(
         count($_GET),
@@ -15,10 +19,26 @@
         $_GET['startrange'],
         $_GET['endrange'],
         ($_GET['page'] -1) * $maxCards,
-        (($_GET['page'] -1) * $maxCards) + $maxCards
-
-
+        $maxCards
     );
+
+    $company_count = $db->getCompanyCount();
+    $page_amount = ceil($company_count/$maxCards);
+
+    $get_array = array($_GET);
+
+    $url = "board-guest.php?";
+    $parameters;
+
+    foreach ($get_array as $get_var){
+        unset($get_var['page']);
+        foreach ($get_var as $key => $value) {
+            $new_par = $key . "=" . $value . "&";
+            $parameters .= $new_par;
+        }
+    }
+
+    $url .= str_replace(" ", "+", $parameters);
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +74,7 @@
         <form method="POST" class="loginform" action="board.php">
             <button class="btn text-uppercase font-weight-bold" id="header-font">Dashboard</button>
         </form>
-            <form style="margin: auto; width: 80%;" action="board.php" method="GET">
+            <form style="margin: auto; width: 80%;" action="board-guest.php" method="GET">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="button input-group-text outline-primary " type="button" id="basic-addon3" onclick="toggleAdvSearch()" > Adv. Search </button>
@@ -82,10 +102,10 @@
                         <div style="padding-top: 1.1%;">CATEGORY</div>
                         <div class="input-group" style="width: 100%;" >
                             <select class="custom-select" id="inputSelectSearchFilter" name="type">
-                                <option id="se" selected>Software Engineering</option>
+                                <option value="" selected>All</option>
+                                <option value="Software Engineering">Software Engineering</option>
                                 <option value="Computing">Computing</option>
                                 <option value="Data">Data</option>
-                                <option value="All">All</option>
                             </select>
                         </div>
                     </div>
@@ -109,7 +129,7 @@
     <div class="main-body">
         <div id="edit-modal" class="modal-custom">
         <!-- Modal content -->
-            <div class="card" style="width: 75%; height: 75%; margin: 7% auto;">
+            <div class="card" style="width: 75%; height: 75%; margin: 7% auto; overflow:scroll;">
                 <div class="card-header ">
                     Company Information
                     <span class="close">&times;</span>
@@ -125,7 +145,6 @@
                             <h5 class="text-uppercase font-weight-bold text-center" style="width: 90%; margin:auto; margin-top: 10%;">company email</h5>
                             <p id="modal-company-email" class="text-center border-bottom" style="width: 90%; margin:auto;">yeah</p>
                         </div>
-                        <div id="black-bar" style="height: 70%; width: 1px; background-color:#e6e6e6; margin-top: 2%; margin-left: 5%;"></div>
                         <div class="col-md-7">
                     <h5 id="modal-company-name" class="card-title text-uppercase font-weight-bold text-center border-bottom" style="width: 80%; margin:auto;">Intel</h5>
                     <p id="modal-company-desc" class="card-text border-bottom p-4">Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California.</p>
@@ -144,6 +163,27 @@
                         </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid " >
+        <!-- Pagination Top-->
+        <div class= "row " id="display-settings" >
+                <div class='col' style="text-align: center;" >
+                        <nav aria-label="Page navigation"style="display: inline-block;"  >
+                            <ul class="pagination" >
+                                <?php
+                                for ($x = 1; $x <= $page_amount; $x++) {
+                                    $page_button = sprintf("
+                                    <li class='page-item'>
+                                        <a class='page-link' href='%spage=%s'>%s</a>
+                                    </li>", $url, $x, $x);
+                                    echo($page_button);
+                                }
+                                ?>
+                            </ul>
+                        </nav>
                 </div>
             </div>
         </div>
@@ -172,6 +212,27 @@
                         echo($element);
                     }
                 ?>
+        </div>
+
+        <div class="container-fluid mt-3" >
+        <!-- Pagination Bottom-->
+        <div class= "row " id="display-settings" >
+                <div class='col' style="text-align: center;" >
+                        <nav aria-label="Page navigation"style="display: inline-block;"  >
+                            <ul class="pagination" >
+                                <?php
+                                for ($x = 1; $x <= $page_amount; $x++) {
+                                    $page_button = sprintf("
+                                    <li class='page-item'>
+                                        <a class='page-link' href='%spage=%s'>%s</a>
+                                    </li>", $url, $x, $x);
+                                    echo($page_button);
+                                }
+                                ?>
+                            </ul>
+                        </nav>
+                </div>
+            </div>
         </div>
 
         <div class="footer" style="margin-top:80px" >
