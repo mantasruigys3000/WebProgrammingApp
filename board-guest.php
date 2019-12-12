@@ -106,8 +106,6 @@
                                 <select class="custom-select" id="inputSelectSearchSort" name="order">
                                     <option selected>A-Z</option>
                                     <option value="Z-A">Z-A</option>
-                                    <option value="Newest">Newest</option>
-                                    <option value="Oldest">Oldest</option>
                                 </select>
                             </div>
                             <div style="padding-top: 1.1%;">CATEGORY</div>
@@ -143,7 +141,7 @@
         <div class="main-body">
             <div id="edit-modal" class="modal-custom">
             <!-- Modal content -->
-                <div class="card" style="width: 75%; height: 75%; margin: 7% auto; overflow:scroll;">
+                <div class="card" style="width: 75%; height: 75%; margin: 7% auto; overflow:auto;">
                     <div class="card-header ">
                         Company Information
                         <span class="close">&times;</span>

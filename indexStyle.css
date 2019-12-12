@@ -13,7 +13,6 @@ body{
 
 #errorContainer
 {
-    margin-top: 75% !important;
     margin-bottom: 0% !important;
 }
 
@@ -61,3 +60,6 @@ button{
     height:50px;
 }
 
+.row{
+    height:33% !important;
+}

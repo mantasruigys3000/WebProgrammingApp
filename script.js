@@ -93,25 +93,21 @@ function initialiseCode(){
         item.addEventListener('click', function(event){
             // get the modal by ID
             current_id = this.id;
-            console.log(current_id);
 
             // depending on the type of the card, corresponding modal is opened when clicked
             // ID types:
             // card-comp{0} - a card containing company information, {0} represents its unique id
             // card-add-comp - a predefined card for adding new companies
 
-            console.log(current_id.includes("card-comp"));
 
             if (current_id.includes("card-comp")){
                 var btn = document.getElementById((current_id));
                 var edit_button =  document.getElementById('edit-button-form');
                 edit_button.action = 'edit.php?id='+current_id;
-                console.log(edit_button.action);
                 modal[0].style.display = "block";
                 getCompanyInfo(current_id);
             }else{
                 modal[1].style.display = "block";
-                console.log(modal[1]);
             }
         })
 
@@ -146,12 +142,10 @@ function initialiseCode(){
 // This selection is used to ensure that JS can only modify the DOM tree after it has finished loading
 
 if( document.readyState !== 'loading' ) {
-    console.log( 'document is already ready, just execute code here' );
     initialiseCode();
     
 } else {
     document.addEventListener('DOMContentLoaded', function () {
-        console.log( 'document was not ready, place code here' );
         initialiseCode();
     });
 };
