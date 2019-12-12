@@ -126,6 +126,6 @@ body{
     padding-top: 0.5%;
     padding-bottom: 0.5%;
     height: 350px !important;
-    overflow: scroll;
+    overflow: auto;
     text-align: center;
 }
