@@ -35,7 +35,6 @@ function initialiseCode(){
                 modal_company_tel = company_list[company]['tel'];
                 modal_company_email = company_list[company]['email'];
                 
-                
             }
         } 
 
@@ -68,19 +67,10 @@ function initialiseCode(){
     }
     }
 
-    // Query that selects all grid blocks within the company list and for each item adds three event listeners
+    // Query that selects all grid blocks within the company list and for each item adds an event listener
     document.querySelectorAll('#company-block-row .card').forEach(item => {
 
-        // 1. Event listener for when mouse enters the card
-        item.addEventListener('mouseover', function(event){
-            // Specific edit button selected and displayed
-            var editButton = document.getElementById((this.id).concat("-btn"));
-            if (editButton){
-                editButton.style.display = "inline-block";
-            }
-        })
-
-        // 2. Event listener for when mouse clicks the card
+        // Event listener for when mouse clicks the card
         item.addEventListener('click', function(event){
             // get the modal by ID
             current_id = this.id;
@@ -94,35 +84,7 @@ function initialiseCode(){
             getCompanyInfo(current_id);
 
         })
-
-        // 3. Event listener for when mouse leaves the card
-        item.addEventListener('mouseout', function(event){
-            var editButton = document.getElementById((this.id).concat("-btn"));
-            if (editButton){
-                editButton.style.display = "none";
-            }
-        })
       })
-
-
-  function searchFunction() {
-    // Declare variables
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById('search-input');
-    filter = input.value.toUpperCase();
-
-    // Loop through all list items, and hide those who don't match the search query
-    document.querySelectorAll('#company-block-row .col-mb-3').forEach(item =>{
-        a = (item.getElementsByClassName("card-body text-primary").item(0));
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            item.style.display = "";
-          } else {
-            item.style.display = "none";
-          }
-    })
-}
-
 }
 
 // This selection is used to ensure that JS can only modify the DOM tree after it has finished loading

@@ -73,7 +73,6 @@
 
         <script type="text/javascript">
             var company_list = <?php echo json_encode($company_list); ?>;
-            console.log(company_list);
         </script>
     </head>
 
@@ -131,7 +130,6 @@
                 else {
                     x.style.display = "none";
                 }
-                return false();
             }
         </script>
 
